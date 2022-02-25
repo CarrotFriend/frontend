@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import Button from './components/atoms/Button';
 
 function App() {
   return (
     <div className="App">
-      <div> Hello World!</div>
+      <>
+        <Button text="hello"></Button>
+      </>
     </div>
   );
 }
