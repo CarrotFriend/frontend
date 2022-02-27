@@ -9,4 +9,6 @@ Carrot Friend의 FrontEnd Repository 입니다.
 |2022.02.24|로그인, 회원가입, 홈화면 웹뷰 목업 완료|
 |2022.02.25|Button 컴포넌트, 테스트 작성 in atoms|
 |2022.02.26|Image 컴포넌트, 테스트 작성 in atoms|
+|2022.02.27|Text 컴포넌트, 테스트 작성 in atoms<br/>이전 컴포넌트 테스트 리팩토링 with @testing-library/react|
+
 
