@@ -10,5 +10,7 @@ Carrot Friend의 FrontEnd Repository 입니다.
 |2022.02.25|Button 컴포넌트, 테스트 작성 in atoms|
 |2022.02.26|Image 컴포넌트, 테스트 작성 in atoms|
 |2022.02.27|Text 컴포넌트, 테스트 작성 in atoms<br/>이전 컴포넌트 테스트 리팩토링 with @testing-library/react|
+|2022.02.28|Input, Label 컴포넌트 작성 in atoms|
+|2022.03.01|molecules 구조 설계<br/>카테고리 설정, 글 올리기 목업 완료|
 
 
