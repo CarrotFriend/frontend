@@ -1,7 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
 import Input from '../../atoms/Input';
 
-const LoginInput = () => {
+const StyledInputList = styled.
+
+}
+
+const InputList = (list) => {
   return (
     <>
       <Input type="text" placeholder="아이디" />

@@ -1,11 +1,11 @@
 import React from 'react';
 // import Button from './components/atoms/Button';
-import Image from './components/atoms/Image';
+// import Image from './components/atoms/Image';
 // import Text from './components/atoms/Text';
-// import Input from './components/atoms/Input';
+import Input from './components/atoms/Input';
 // import Label from './components/atoms/Label';
 // import LoginInput from './components/molecules/LoginInput';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 
 // const AppBlock = styled.div`
 //   width: 512px;
@@ -31,9 +31,9 @@ function App() {
           button
         </Button> */}
         {/* <Image src="https://curearthritis.org/wp-content/uploads/2019/11/Snow-man.jpeg" /> */}
-        <Image src="https://curearthritis.org/wp-content/uploads/2019/11/Snow-man.jpeg" />
+        {/* <Image src="https://curearthritis.org/wp-content/uploads/2019/11/Snow-man.jpeg" /> */}
         {/* <Text text="당근친구" /> */}
-        {/* <Input type="password" accept="image/*" id="12" /> */}
+        <Input type="password" accept="image/*" name="12" />
         {/* <Label linked="id" text="카테고리1" /> */}
         {/* <LoginInput /> */}
       </ThemeProvider>
