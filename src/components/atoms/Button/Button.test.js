@@ -2,17 +2,17 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Button from './index';
 
-describe('renders a button with or without text', () => {
-  it('renders without text', () => {
-    const { getByTestId } = render(<Button />);
-    const btn = getByTestId('button');
-    expect(btn.textContent).toBe('');
-  });
-  it('renders with text', () => {
-    const { getByText } = render(<Button text="로그인" />);
-    getByText('로그인');
-  });
-});
+// describe('renders a button with or without text', () => {
+//   it('renders without text', () => {
+//     const { getByTestId } = render(<Button />);
+//     const btn = getByTestId('button');
+//     expect(btn.textContent).toBe('');
+//   });
+//   it('renders with text', () => {
+//     const { getByText } = render(<Button text="로그인" />);
+//     getByText('로그인');
+//   });
+// });
 
 // let container = null;
 // beforeEach(() => {
