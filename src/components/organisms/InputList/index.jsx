@@ -1,19 +1,37 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Input from '../../atoms/Input';
 
-const StyledInputList = styled.
+const flex = css`
+  ${({ flex }) =>
+    flex === 'column' &&
+    css`
+      flex-direction: column;
+    `}
+`;
 
-}
+const StyledInputList = styled.div`
+  display: flex;
+  ${flex}
+`;
 
-const InputList = (list) => {
+const InputList = ({ list, flex }) => {
   return (
-    <>
-      <Input type="text" placeholder="아이디" />
-      <br />
-      <Input type="password" placeholder="비밀번호" />
-    </>
+    <StyledInputList flex={flex}>
+      {list.map(({ type, placeholder, name, value, size }) => {
+        return (
+          <Input
+            key={name}
+            value={value}
+            type={type}
+            placeholder={placeholder}
+            name={name}
+            size={size}
+          />
+        );
+      })}
+    </StyledInputList>
   );
 };
 
-export default LoginInput;
+export default InputList;

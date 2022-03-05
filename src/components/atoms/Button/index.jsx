@@ -17,25 +17,37 @@ const colorStyle = css`
   }}
 `;
 const sizeStyle = css`
-  ${(props) =>
-    props.size == 'large' &&
+  ${({ size }) =>
+    size === 'large' &&
     css`
+      width: 15rem;
       height: 3rem;
       font-size: 1.25rem;
+      & + & {
+        margin: 1rem;
+      }
     `}
 
-  ${(props) =>
-    props.size == 'medium' &&
+  ${({ size }) =>
+    size === 'medium' &&
     css`
+      width: 13rem;
       height: 2.25rem;
       font-size: 1rem;
+      & + & {
+        margin: 0.75rem;
+      }
     `}
   
-    ${(props) =>
-    props.size == 'small' &&
+    ${({ size }) =>
+    size === 'small' &&
     css`
+      width: 10rem;
       height: 1.75rem;
-      font-size: 0.875rem;
+      font-size: 0.5rem;
+      & + & {
+        margin: 1rem;
+      }
     `}
 `;
 
@@ -43,10 +55,9 @@ const StyledButton = styled.button`
   /* 공통 스타일 */
   outline: none;
   border: none;
-  border-radius: 4px;
+  border-radius: 1rem;
   color: white;
   cursor: pointer;
-  padding: 0 1rem;
 
   /* 크기 */
   ${sizeStyle}
@@ -55,12 +66,8 @@ const StyledButton = styled.button`
   ${colorStyle}
 `;
 
-const Button = ({ children, color, ...rest }) => {
-  return (
-    <StyledButton color={color} {...rest}>
-      {children}
-    </StyledButton>
-  );
+const Button = ({ children, ...rest }) => {
+  return <StyledButton {...rest}>{children}</StyledButton>;
 };
 
 Button.defaultProps = {
