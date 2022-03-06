@@ -16,7 +16,6 @@ const StyledInputList = styled.div`
 `;
 
 const InputList = ({ flex, list }) => {
-  console.log(list);
   return (
     <StyledInputList flex={flex}>
       {list.map(({ name, ...rest }) => {

@@ -7,7 +7,9 @@ import React from 'react';
 // import Label from './components/atoms/Label';
 // import LoginInput from './components/molecules/LoginInput';
 import LoginPage from './components/pages/LoginPage';
+import JoinPage from './components/pages/JoinPage';
 import { ThemeProvider } from 'styled-components';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // const AppBlock = styled.div`
 //   width: 512px;
@@ -61,7 +63,12 @@ function App() {
         {/* <Label linked="id" text="카테고리1" /> */}
         {/* <LoginInput /> */}
         {/* <InputList list={list} /> */}
-        <LoginPage />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/join" element={<JoinPage />} />
+          </Routes>
+        </BrowserRouter>
       </ThemeProvider>
     </div>
   );

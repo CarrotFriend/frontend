@@ -1,8 +1,15 @@
 import React from 'react';
-import './Label.css';
+import styled, { css } from 'styled-components';
 
-const Label = ({ text, linked }) => {
-  return <label for={linked}>{text}</label>;
+const StyledLabel = styled.label`
+  margin-bottom: 0.5rem;
+`;
+const Label = ({ child, target, ...rest }) => {
+  return (
+    <StyledLabel htmlFor={target} {...rest}>
+      {child}
+    </StyledLabel>
+  );
 };
 
 export default Label;

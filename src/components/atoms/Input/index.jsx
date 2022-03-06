@@ -19,7 +19,7 @@ const inputSize = css`
 `;
 const StyledInput = styled.input`
   width: 20rem;
-  height: 1rem;
+  height: 2rem;
   font-size: 0;75rem;
   padding-left: 2rem;
   ${inputSize}
