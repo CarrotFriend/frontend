@@ -66,8 +66,12 @@ const StyledButton = styled.button`
   ${colorStyle}
 `;
 
-const Button = ({ children, ...rest }) => {
-  return <StyledButton {...rest}>{children}</StyledButton>;
+const Button = ({ children, clickBtn, ...rest }) => {
+  return (
+    <StyledButton {...rest} onClick={clickBtn}>
+      {children}
+    </StyledButton>
+  );
 };
 
 Button.defaultProps = {

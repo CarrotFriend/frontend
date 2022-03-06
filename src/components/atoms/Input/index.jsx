@@ -25,14 +25,12 @@ const StyledInput = styled.input`
   ${inputSize}
 `;
 
-const Input = ({ type, name, placeholder, value, size }) => {
+const Input = ({ value, setValue, ...rest }) => {
   return (
     <StyledInput
-      type={type}
-      defaultValue={value}
-      name={name}
-      placeholder={placeholder}
-      size={size}
+      value={value}
+      {...rest}
+      onChange={(e) => setValue(e.target.value)}
     />
   );
 };

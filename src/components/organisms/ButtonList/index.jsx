@@ -18,9 +18,9 @@ const StyledButtonList = styled.div`
 const ButtonList = ({ list, flex }) => {
   return (
     <StyledButtonList flex={flex}>
-      {list.map(({ size, color, child }) => {
+      {list.map(({ child, ...rest }) => {
         return (
-          <Button key={child} size={size} color={color}>
+          <Button key={child} {...rest}>
             {child}
           </Button>
         );

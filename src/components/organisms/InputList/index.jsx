@@ -15,20 +15,12 @@ const StyledInputList = styled.div`
   ${flex}
 `;
 
-const InputList = ({ list, flex }) => {
+const InputList = ({ flex, list }) => {
+  console.log(list);
   return (
     <StyledInputList flex={flex}>
-      {list.map(({ type, placeholder, name, value, size }) => {
-        return (
-          <Input
-            key={name}
-            value={value}
-            type={type}
-            placeholder={placeholder}
-            name={name}
-            size={size}
-          />
-        );
+      {list.map(({ name, ...rest }) => {
+        return <Input key={name} name={name} {...rest} />;
       })}
     </StyledInputList>
   );
