@@ -36,10 +36,11 @@ const InputLabelList = ({ flex, labelList, inputList }) => {
     <StyledInputLabelList flex={flex}>
       {labelList.map((label, idx) => {
         const { name, ...inputRest } = inputList[idx];
+        console.log(name, inputRest);
         return (
-          <StyledInputLabel flex={flex}>
-            <Label key={name + idx} {...label} />
-            <Input key={name} name={name} {...inputRest} />
+          <StyledInputLabel key={name + 99} flex={flex}>
+            <Label {...label} />
+            <Input name={name} {...inputRest} />
           </StyledInputLabel>
         );
       })}

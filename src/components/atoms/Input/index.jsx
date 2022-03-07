@@ -26,13 +26,10 @@ const StyledInput = styled.input`
 `;
 
 const Input = ({ value, setValue, ...rest }) => {
-  return (
-    <StyledInput
-      value={value}
-      {...rest}
-      onChange={(e) => setValue(e.target.value)}
-    />
-  );
+  const handle = (e) => {
+    setValue(e.target.value);
+  };
+  return <StyledInput value={value} {...rest} onChange={handle} />;
 };
 
 export default Input;

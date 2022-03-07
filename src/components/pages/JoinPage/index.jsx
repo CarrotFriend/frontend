@@ -154,14 +154,30 @@ const PageFrame = styled.div`
 `;
 
 const JoinPage = () => {
-  const [id, setId] = useState('');
+  const [id, setId] = useState('a');
   const [pw, setPw] = useState('');
+  const [pwcheck, setPwcheck] = useState('');
+  const [username, setUsername] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [date, setDate] = useState('');
   const [alert, setAlert] = useState('');
   const navigate = useNavigate();
-  // props.loginInputProps[0]['value'] = id;
-  // props.loginInputProps[1]['value'] = pw;
-  // props.loginInputProps[0]['setValue'] = setId;
-  // props.loginInputProps[1]['setValue'] = setPw;
+
+  props.inputProps[0]['value'] = id;
+  props.inputProps[0]['setValue'] = setId;
+  props.inputProps[1]['value'] = pw;
+  props.inputProps[1]['setValue'] = setPw;
+  props.inputProps[2]['value'] = pwcheck;
+  props.inputProps[2]['setValue'] = setPwcheck;
+  props.inputProps[3]['value'] = username;
+  props.inputProps[3]['setValue'] = setUsername;
+  props.inputProps[4]['value'] = nickname;
+  props.inputProps[4]['setValue'] = setNickname;
+  props.inputProps[5]['value'] = email;
+  props.inputProps[5]['setValue'] = setEmail;
+  props.inputProps[6]['value'] = date;
+  props.inputProps[6]['setValue'] = setDate;
 
   const clickLogin = (e) => {
     if (id.trim() === '') {

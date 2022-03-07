@@ -58,6 +58,7 @@ const StyledButton = styled.button`
   border-radius: 1rem;
   color: white;
   cursor: pointer;
+  margin: 1rem;
 
   /* 크기 */
   ${sizeStyle}

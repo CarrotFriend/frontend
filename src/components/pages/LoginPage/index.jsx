@@ -4,6 +4,7 @@ import InputList from '../../organisms/InputList';
 import ButtonList from '../../organisms/ButtonList';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import Input from '../../atoms/Input';
 
 const props = {
   loginInputProps: [
@@ -82,11 +83,13 @@ const PageFrame = styled.div`
 const LoginPage = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
+  const [abc, setAbc] = useState('');
+
   const [alert, setAlert] = useState('');
   const navigate = useNavigate();
   props.loginInputProps[0]['value'] = id;
-  props.loginInputProps[1]['value'] = pw;
   props.loginInputProps[0]['setValue'] = setId;
+  props.loginInputProps[1]['value'] = pw;
   props.loginInputProps[1]['setValue'] = setPw;
 
   const clickLogin = (e) => {
@@ -112,6 +115,7 @@ const LoginPage = () => {
         <LoginFormBox action="" method="post">
           <InputList list={props.loginInputProps} flex="column" />
           <AlertInput>{alert}</AlertInput>
+          <Input type="text" value={abc} setValue={setAbc} />
           <ButtonList list={props.btnProps} flex="column" />
         </LoginFormBox>
       </StyledLoginPage>
