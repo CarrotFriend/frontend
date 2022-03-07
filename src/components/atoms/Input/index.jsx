@@ -8,6 +8,7 @@ const inputSize = css`
       width: 30rem;
       height: 2rem;
       font-size: 1rem;
+      padding-left: 1rem;
     `}
   ${({ size }) =>
     size === 'large' &&
@@ -15,13 +16,14 @@ const inputSize = css`
       width: 40rem;
       height: 4rem;
       font-size: 1.5rem;
+      padding-left: 1.5rem;
     `}
 `;
 const StyledInput = styled.input`
   width: 20rem;
   height: 2rem;
-  font-size: 0;75rem;
-  padding-left: 2rem;
+  font-size: 0.75rem;
+  padding-left: 0.5rem;
   ${inputSize}
 `;
 

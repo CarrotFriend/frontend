@@ -14,6 +14,7 @@ const props = {
       accept: '',
       size: 'small',
       autoFocus: '',
+      required: 'required',
     },
     {
       type: 'password',
@@ -22,6 +23,7 @@ const props = {
       accept: '',
       size: 'small',
       autoFocus: '',
+      required: 'required',
     },
     {
       type: 'password',
@@ -30,6 +32,7 @@ const props = {
       accept: '',
       size: 'small',
       autoFocus: '',
+      required: 'required',
     },
     {
       type: 'text',
@@ -38,6 +41,7 @@ const props = {
       accept: '',
       size: 'small',
       autoFocus: '',
+      required: 'required',
     },
     {
       type: 'text',
@@ -46,6 +50,7 @@ const props = {
       accept: '',
       size: 'small',
       autoFocus: '',
+      required: 'required',
     },
     {
       type: 'email',
@@ -54,6 +59,7 @@ const props = {
       accept: '',
       size: 'small',
       autoFocus: '',
+      required: 'required',
     },
     {
       type: 'date',
@@ -62,6 +68,7 @@ const props = {
       accept: '',
       size: 'small',
       autoFocus: '',
+      required: 'required',
     },
   ],
   labelProps: [
@@ -154,7 +161,7 @@ const PageFrame = styled.div`
 `;
 
 const JoinPage = () => {
-  const [id, setId] = useState('a');
+  const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [pwcheck, setPwcheck] = useState('');
   const [username, setUsername] = useState('');

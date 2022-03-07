@@ -58,6 +58,7 @@ const LoginFormBox = styled.form`
 
 const AlertInput = styled.div`
   color: red;
+  margin-top: 2rem;
 `;
 
 const StyledLoginPage = styled.div`
@@ -83,7 +84,6 @@ const PageFrame = styled.div`
 const LoginPage = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
-  const [abc, setAbc] = useState('');
 
   const [alert, setAlert] = useState('');
   const navigate = useNavigate();
@@ -115,7 +115,6 @@ const LoginPage = () => {
         <LoginFormBox action="" method="post">
           <InputList list={props.loginInputProps} flex="column" />
           <AlertInput>{alert}</AlertInput>
-          <Input type="text" value={abc} setValue={setAbc} />
           <ButtonList list={props.btnProps} flex="column" />
         </LoginFormBox>
       </StyledLoginPage>
