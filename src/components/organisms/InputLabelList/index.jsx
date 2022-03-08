@@ -36,7 +36,6 @@ const InputLabelList = ({ flex, labelList, inputList }) => {
     <StyledInputLabelList flex={flex}>
       {labelList.map((label, idx) => {
         const { name, ...inputRest } = inputList[idx];
-        console.log(name, inputRest);
         return (
           <StyledInputLabel key={name + 99} flex={flex}>
             <Label {...label} />

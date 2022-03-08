@@ -4,10 +4,9 @@ import InputList from '../../organisms/InputList';
 import ButtonList from '../../organisms/ButtonList';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import Input from '../../atoms/Input';
 
-const props = {
-  loginInputProps: [
+const data = {
+  loginInputs: [
     {
       type: 'text',
       placeholder: '아이디를 입력해주세요',
@@ -25,7 +24,7 @@ const props = {
       autoFocus: '',
     },
   ],
-  btnProps: [
+  btns: [
     {
       size: 'large',
       color: 'pink',
@@ -37,7 +36,7 @@ const props = {
       child: '회원가입',
     },
   ],
-  titleProps: {
+  title: {
     text: '당근친구',
     size: 'large',
     color: '',
@@ -87,35 +86,49 @@ const LoginPage = () => {
 
   const [alert, setAlert] = useState('');
   const navigate = useNavigate();
-  props.loginInputProps[0]['value'] = id;
-  props.loginInputProps[0]['setValue'] = setId;
-  props.loginInputProps[1]['value'] = pw;
-  props.loginInputProps[1]['setValue'] = setPw;
 
-  const clickLogin = (e) => {
-    if (id.trim() === '') {
-      setAlert('아이디를 입력해주세요!');
-      e.preventDefault();
-    } else if (pw.trim() === '') {
-      setAlert('비밀번호를 입력해주세요!');
-      e.preventDefault();
-    }
-  };
-  const clickJoin = (e) => {
-    e.preventDefault();
-    navigate('/join');
-  };
-  props.btnProps[0]['clickBtn'] = clickLogin;
-  props.btnProps[1]['clickBtn'] = clickJoin;
+  const loginInputs = [
+    {
+      ...data.loginInputs[0],
+      value: id,
+      setValue: setId,
+    },
+    {
+      ...data.loginInputs[1],
+      value: pw,
+      setValue: setPw,
+    },
+  ];
+  const btns = [
+    {
+      ...data.btns[0],
+      clickBtn: (e) => {
+        if (id.trim() === '') {
+          setAlert('아이디를 입력해주세요!');
+          e.preventDefault();
+        } else if (pw.trim() === '') {
+          setAlert('비밀번호를 입력해주세요!');
+          e.preventDefault();
+        }
+      },
+    },
+    {
+      ...data.btns[1],
+      clickBtn: (e) => {
+        e.preventDefault();
+        navigate('/join');
+      },
+    },
+  ];
 
   return (
     <PageFrame>
       <StyledLoginPage>
-        <Text props={props.titleProps} />
+        <Text props={data.title} />
         <LoginFormBox action="" method="post">
-          <InputList list={props.loginInputProps} flex="column" />
+          <InputList list={loginInputs} flex="column" />
           <AlertInput>{alert}</AlertInput>
-          <ButtonList list={props.btnProps} flex="column" />
+          <ButtonList list={btns} flex="column" />
         </LoginFormBox>
       </StyledLoginPage>
     </PageFrame>

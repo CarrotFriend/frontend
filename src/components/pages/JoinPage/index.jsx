@@ -5,8 +5,8 @@ import InputLabelList from '../../organisms/InputLabelList';
 import ButtonList from '../../organisms/ButtonList';
 import styled from 'styled-components';
 
-const props = {
-  inputProps: [
+const data = {
+  inputs: [
     {
       type: 'text',
       placeholder: '',
@@ -71,7 +71,7 @@ const props = {
       required: 'required',
     },
   ],
-  labelProps: [
+  labels: [
     {
       size: 'medium',
       color: 'gray',
@@ -115,14 +115,14 @@ const props = {
       target: 'date',
     },
   ],
-  btnProps: [
+  btns: [
     {
       size: 'large',
       color: 'pink',
       child: '회원가입',
     },
   ],
-  titleProps: {
+  title: {
     text: '당근친구',
     size: 'medium',
     color: '',
@@ -171,20 +171,22 @@ const JoinPage = () => {
   const [alert, setAlert] = useState('');
   const navigate = useNavigate();
 
-  props.inputProps[0]['value'] = id;
-  props.inputProps[0]['setValue'] = setId;
-  props.inputProps[1]['value'] = pw;
-  props.inputProps[1]['setValue'] = setPw;
-  props.inputProps[2]['value'] = pwcheck;
-  props.inputProps[2]['setValue'] = setPwcheck;
-  props.inputProps[3]['value'] = username;
-  props.inputProps[3]['setValue'] = setUsername;
-  props.inputProps[4]['value'] = nickname;
-  props.inputProps[4]['setValue'] = setNickname;
-  props.inputProps[5]['value'] = email;
-  props.inputProps[5]['setValue'] = setEmail;
-  props.inputProps[6]['value'] = date;
-  props.inputProps[6]['setValue'] = setDate;
+  const stateList = [
+    [id, setId],
+    [pw, setPw],
+    [pwcheck, setPwcheck],
+    [username, setUsername],
+    [nickname, setNickname],
+    [email, setEmail],
+    [date, setDate],
+  ];
+  const inputs = stateList.map(([value, setValue], idx) => {
+    return {
+      ...data.inputs[idx],
+      value,
+      setValue,
+    };
+  });
 
   const clickLogin = (e) => {
     if (id.trim() === '') {
@@ -199,15 +201,15 @@ const JoinPage = () => {
   return (
     <PageFrame>
       <StyledJoinPage>
-        <Text props={props.titleProps} />
+        <Text props={data.title} />
         <JoinFormBox action="" method="post">
           <InputLabelList
-            inputList={props.inputProps}
-            labelList={props.labelProps}
+            inputList={inputs}
+            labelList={data.labels}
             flex="column"
           />
           <AlertInput>{alert}</AlertInput>
-          <ButtonList list={props.btnProps} flex="column" />
+          <ButtonList list={data.btns} flex="column" />
         </JoinFormBox>
       </StyledJoinPage>
     </PageFrame>
