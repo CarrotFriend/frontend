@@ -7,13 +7,8 @@ const flex = css`
     flex === 'column' &&
     css`
       flex-direction: column;
-      margin-top: 2.5rem;
     `}
-  ${({ flex }) =>
-    flex === 'row' &&
-    css`
-      margin-left: 2.5rem;
-    `}
+  ${({ flex }) => flex === 'row' && css``}
 `;
 
 const StyledButtonList = styled.div`

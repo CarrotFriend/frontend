@@ -10,6 +10,7 @@ import LoginPage from './components/pages/LoginPage';
 import JoinPage from './components/pages/JoinPage';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CategoryPage from './components/pages/CategoryPage';
 
 // const AppBlock = styled.div`
 //   width: 512px;
@@ -65,8 +66,9 @@ function App() {
         {/* <InputList list={list} /> */}
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/join" element={<JoinPage />} />
+            <Route path="/category" element={<CategoryPage />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

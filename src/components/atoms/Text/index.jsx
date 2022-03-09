@@ -5,19 +5,19 @@ const fontSize = css`
   ${({ size }) =>
     size === 'small' &&
     css`
-      font-size: 2rem;
+      font-size: 1rem;
     `}
 
   ${({ size }) =>
     size === 'medium' &&
     css`
-      font-size: 3rem;
+      font-size: 1.5rem;
     `}
 
   ${({ size }) =>
     size === 'large' &&
     css`
-      font-size: 4rem;
+      font-size: 3rem;
     `}
 `;
 

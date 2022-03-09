@@ -5,41 +5,58 @@ import Label from '../../atoms/Label';
 
 const flex = css`
   ${({ flex }) =>
-    flex === 'column' &&
+    (flex === 'column' || flex === 'column-reverse') &&
     css`
-      flex-direction: column;
-      & + & {
-        margin-top: 2rem;
-      }
+      flex-direction: ${flex};
+      // & + & {
+      //   margin-top: 2rem;
+      // }
     `}
   ${({ flex }) =>
-    flex === 'row' &&
+    (flex === 'row' || flex === 'row-reverse') &&
     css`
-      & + & {
-        margin-left: 2rem;
-      }
+      flex-direction: ${flex};
+      // & + & {
+      //   margin-left: 2rem;
+      // }
     `}
 `;
 
 const StyledInputLabel = styled.div`
   display: flex;
   ${flex}
+  width: 34%;
+  justify-content: flex-start;
 `;
 
 const StyledInputLabelList = styled.div`
   display: flex;
+  flex-wrap: wrap;
   ${flex}
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 `;
 
-const InputLabelList = ({ flex, labelList, inputList }) => {
+const InputLabelList = ({ flex, isReversed, labelList, inputList }) => {
   return (
-    <StyledInputLabelList flex={flex}>
+    <StyledInputLabelList flex={flex.listDirection}>
       {labelList.map((label, idx) => {
         const { name, ...inputRest } = inputList[idx];
         return (
-          <StyledInputLabel key={name + 99} flex={flex}>
-            <Label {...label} />
-            <Input name={name} {...inputRest} />
+          <StyledInputLabel key={name + 99} flex={flex.contentDirection}>
+            {isReversed ? (
+              <>
+                <Label {...label} />
+                <Input name={name} {...inputRest} />
+              </>
+            ) : (
+              <>
+                <Input name={name} {...inputRest} />
+                <Label {...label} />
+              </>
+            )}
           </StyledInputLabel>
         );
       })}

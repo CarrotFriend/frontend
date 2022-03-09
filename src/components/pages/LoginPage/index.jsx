@@ -43,39 +43,35 @@ const data = {
   },
 };
 
+const AlertInput = styled.div`
+  color: red;
+`;
+
 const LoginFormBox = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: inherit;
   height: inherit;
-  margin: 3rem;
-  padding: 4rem 0;
+  padding: 2rem 0;
   border: 1px solid black;
-`;
-
-const AlertInput = styled.div`
-  color: red;
-  margin-top: 2rem;
 `;
 
 const StyledLoginPage = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
   width: 50rem;
-  height: 40rem;
-  margin: 5rem;
+  height: 65%;
   text-align: center;
 `;
 
 const PageFrame = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: inherit;
-  height: inherit;
+  height: 50rem;
 `;
 
 // join 버튼은 클릭하면 JoinPage로 Link or Redirect

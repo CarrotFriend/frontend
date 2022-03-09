@@ -1,116 +1,90 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import Text from '../../atoms/Text';
 import InputLabelList from '../../organisms/InputLabelList';
 import ButtonList from '../../organisms/ButtonList';
 import styled from 'styled-components';
 
+const commonInputAttribute = {
+  size: 'small',
+  required: 'required',
+};
+const commonLabelAttribute = {
+  size: 'medium',
+  color: 'gray',
+};
+
 const data = {
   inputs: [
     {
       type: 'text',
-      placeholder: '',
       name: 'id',
-      accept: '',
-      size: 'small',
-      autoFocus: '',
-      required: 'required',
+      ...commonInputAttribute,
     },
     {
       type: 'password',
-      placeholder: '',
       name: 'pw',
-      accept: '',
-      size: 'small',
-      autoFocus: '',
-      required: 'required',
+      ...commonInputAttribute,
     },
     {
       type: 'password',
-      placeholder: '',
       name: 'pwcheck',
-      accept: '',
-      size: 'small',
-      autoFocus: '',
-      required: 'required',
+      ...commonInputAttribute,
     },
     {
       type: 'text',
-      placeholder: '',
       name: 'username',
-      accept: '',
-      size: 'small',
-      autoFocus: '',
-      required: 'required',
+      ...commonInputAttribute,
     },
     {
       type: 'text',
-      placeholder: '',
       name: 'nickname',
-      accept: '',
-      size: 'small',
-      autoFocus: '',
-      required: 'required',
+      ...commonInputAttribute,
     },
     {
       type: 'email',
-      placeholder: '',
       name: 'email',
-      accept: '',
-      size: 'small',
-      autoFocus: '',
-      required: 'required',
+      ...commonInputAttribute,
     },
     {
       type: 'date',
-      placeholder: '',
       name: 'date',
-      accept: '',
-      size: 'small',
-      autoFocus: '',
-      required: 'required',
+      ...commonInputAttribute,
     },
   ],
   labels: [
     {
-      size: 'medium',
-      color: 'gray',
+      ...commonLabelAttribute,
       child: '아이디',
       target: 'id',
     },
     {
-      size: 'medium',
-      color: 'gray',
+      ...commonLabelAttribute,
       child: '비밀번호',
       target: 'pw',
     },
     {
-      size: 'medium',
-      color: 'gray',
+      ...commonLabelAttribute,
       child: '비밀번호 재확인',
       target: 'pwcheck',
     },
     {
-      size: 'medium',
-      color: 'gray',
+      ...commonLabelAttribute,
       child: '이름',
       target: 'username',
     },
     {
-      size: 'medium',
-      color: 'gray',
+      ...commonLabelAttribute,
       child: '닉네임',
       target: 'nickname',
     },
     {
-      size: 'medium',
-      color: 'gray',
+      ...commonLabelAttribute,
       child: '이메일',
       target: 'email',
     },
     {
-      size: 'medium',
-      color: 'gray',
+      ...commonLabelAttribute,
       child: '생년월일',
       target: 'date',
     },
@@ -124,9 +98,14 @@ const data = {
   ],
   title: {
     text: '당근친구',
-    size: 'medium',
+    size: 'large',
     color: '',
   },
+};
+
+const InputLableListFlex = {
+  listDirection: 'column',
+  contentDirection: 'column',
 };
 
 const JoinFormBox = styled.form`
@@ -134,21 +113,21 @@ const JoinFormBox = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: inherit;
-  height: inherit;
+  width: 100%;
+  height: 100%;
   padding: 1rem 0;
 `;
 
-const AlertInput = styled.div`
-  color: red;
-`;
+// const AlertInput = styled.div`
+//   color: red;
+// `;
 
 const StyledJoinPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 50rem;
-  height: 40rem;
+  height: 50rem;
   margin: 5rem;
 `;
 
@@ -168,8 +147,8 @@ const JoinPage = () => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [date, setDate] = useState('');
-  const [alert, setAlert] = useState('');
-  const navigate = useNavigate();
+  // const [alert, setAlert] = useState('');
+  // const navigate = useNavigate();
 
   const stateList = [
     [id, setId],
@@ -188,15 +167,16 @@ const JoinPage = () => {
     };
   });
 
-  const clickLogin = (e) => {
-    if (id.trim() === '') {
-      setAlert('아이디를 입력해주세요!');
-      e.preventDefault();
-    } else if (pw.trim() === '') {
-      setAlert('비밀번호를 입력해주세요!');
-      e.preventDefault();
-    }
-  };
+  // Api 받고 아이디 입력하면 중복 체크, 비밀번호 & 비밀번호 확인 체크, 이메일 타입 체크 등 하는 함수 작성해서 내려 보내기
+  // const clickJoin = (e) => {
+  //   if (id.trim() === '') {
+  //     setAlert('아이디를 입력해주세요!');
+  //     e.preventDefault();
+  //   } else if (pw.trim() === '') {
+  //     setAlert('비밀번호를 입력해주세요!');
+  //     e.preventDefault();
+  //   }
+  // };
 
   return (
     <PageFrame>
@@ -206,9 +186,10 @@ const JoinPage = () => {
           <InputLabelList
             inputList={inputs}
             labelList={data.labels}
-            flex="column"
+            flex={InputLableListFlex}
+            isReversed={true}
           />
-          <AlertInput>{alert}</AlertInput>
+          {/* <AlertInput>{alert}</AlertInput> */}
           <ButtonList list={data.btns} flex="column" />
         </JoinFormBox>
       </StyledJoinPage>
