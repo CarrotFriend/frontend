@@ -17,3 +17,4 @@ Carrot Friend의 FrontEnd Repository 입니다.
 |2022.03.06|LoginPage input값 검사 로직 추가<br/>Router(LoginPage, JoinPage) 설정<br/>InputLabelList, JoinPage view단 완성|
 |2022.03.07|JoinPage 검사 로직 추가, 에러 수정|
 |2022.03.09|CategoryPage 추가 및 구현|
+|2022.03.10|JoinPage, CategoryPage 입력 유효성 검사 추가|
