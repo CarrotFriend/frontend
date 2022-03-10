@@ -7,7 +7,6 @@ import styled from 'styled-components';
 
 const commonInputAttribute = {
   size: 'small',
-  required: 'required',
 };
 const commonLabelAttribute = {
   size: 'medium',
@@ -118,9 +117,9 @@ const JoinFormBox = styled.form`
   padding: 1rem 0;
 `;
 
-// const AlertInput = styled.div`
-//   color: red;
-// `;
+const Alert = styled.div`
+  color: red;
+`;
 
 const StyledJoinPage = styled.div`
   display: flex;
@@ -147,7 +146,7 @@ const JoinPage = () => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [date, setDate] = useState('');
-  // const [alert, setAlert] = useState('');
+  const [alert, setAlert] = useState('');
   // const navigate = useNavigate();
 
   const stateList = [
@@ -167,16 +166,40 @@ const JoinPage = () => {
     };
   });
 
-  // Api 받고 아이디 입력하면 중복 체크, 비밀번호 & 비밀번호 확인 체크, 이메일 타입 체크 등 하는 함수 작성해서 내려 보내기
-  // const clickJoin = (e) => {
-  //   if (id.trim() === '') {
-  //     setAlert('아이디를 입력해주세요!');
-  //     e.preventDefault();
-  //   } else if (pw.trim() === '') {
-  //     setAlert('비밀번호를 입력해주세요!');
-  //     e.preventDefault();
-  //   }
-  // };
+  // Api 받고 아이디 중복 체크만 확인
+  const clickBtn = (e) => {
+    const reg_email =
+      /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+    if (id.trim() === '' || id.trim().length < 4) {
+      setAlert('아이디를 최소 4자 이상 입력해주세요.');
+      e.preventDefault();
+    } else if (pw.trim() === '' || pw.trim().length < 4) {
+      setAlert('비밀번호를 최소 4자 이상 입력해주세요.');
+      e.preventDefault();
+    } else if (pw.trim() !== pwcheck.trim()) {
+      setAlert('비밀번호가 일치하지 않습니다.');
+      e.preventDefault();
+    } else if (username.trim() === '' || username.length < 2) {
+      setAlert('이름을 최소 1자 이상 입력해주세요.');
+      e.preventDefault();
+    } else if (nickname.trim() === '' || nickname.length < 2) {
+      setAlert('닉네임을 최소 1자 이상 입력해주세요.');
+      e.preventDefault();
+    } else if (!reg_email.test(email)) {
+      setAlert('이메일 양식을 올바르게 입력해주세요.');
+      e.preventDefault();
+    } else if (date.trim() === '') {
+      setAlert('생년월일을 선택해주세요.');
+      e.preventDefault();
+    }
+  };
+
+  const btns = [
+    {
+      ...data.btns[0],
+      clickBtn: clickBtn,
+    },
+  ];
 
   return (
     <PageFrame>
@@ -189,8 +212,8 @@ const JoinPage = () => {
             flex={InputLableListFlex}
             isReversed={true}
           />
-          {/* <AlertInput>{alert}</AlertInput> */}
-          <ButtonList list={data.btns} flex="column" />
+          <Alert>{alert}</Alert>
+          <ButtonList list={btns} flex="column" />
         </JoinFormBox>
       </StyledJoinPage>
     </PageFrame>

@@ -161,6 +161,11 @@ const InputLableListFlex = {
   contentDirection: 'row',
 };
 
+const Alert = styled.div`
+  color: red;
+  visibility: hidden;
+`;
+
 const TitleArea = styled.div`
   width: 100%;
   border-bottom: 1px solid gray;
@@ -187,20 +192,32 @@ const StyledCategoryPage = styled.div`
 `;
 
 const CategoryPage = () => {
+  const clickBtn = (e) => {
+    let isChecked = false;
+    const checkValues = document.querySelectorAll('input');
+    checkValues.forEach((input) => {
+      if (input.checked) isChecked = true;
+    });
+    if (!isChecked) {
+      e.preventDefault();
+      document.querySelector('.alert').style.visibility = 'visible';
+    }
+  };
   return (
     <StyledCategoryPage>
       <TitleArea>
         <Text props={data.title} />
       </TitleArea>
       <Text props={data.description} />
-      <CategoryFormBox>
+      <CategoryFormBox action="" method="post">
         <InputLabelList
           inputList={data.inputs}
           labelList={data.labels}
           flex={InputLableListFlex}
           isReversed={false}
         />
-        <Button size="medium" color="pink">
+        <Alert className="alert">적어도 하나를 선택해 주십시오.</Alert>
+        <Button size="medium" color="pink" clickBtn={clickBtn}>
           제출
         </Button>
       </CategoryFormBox>
