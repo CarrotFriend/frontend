@@ -120,7 +120,7 @@ const LoginPage = () => {
   return (
     <PageFrame>
       <StyledLoginPage>
-        <Text props={data.title} />
+        <Text size={data.title.size}>{data.title.text}</Text>
         <LoginFormBox action="" method="post">
           <InputList list={loginInputs} flex="column" />
           <AlertInput>{alert}</AlertInput>

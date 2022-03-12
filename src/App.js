@@ -6,6 +6,7 @@ import React from 'react';
 // import InputList from './components/organisms/InputList';
 // import Label from './components/atoms/Label';
 // import LoginInput from './components/molecules/LoginInput';
+import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
 import JoinPage from './components/pages/JoinPage';
 import { ThemeProvider } from 'styled-components';
@@ -51,6 +52,7 @@ function App() {
             blue: '#228be6',
             gray: '#495057',
             pink: '#f06596',
+            white: '#ffffff',
           },
         }}
       >
@@ -66,6 +68,7 @@ function App() {
         {/* <InputList list={list} /> */}
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/join" element={<JoinPage />} />
             <Route path="/category" element={<CategoryPage />} />

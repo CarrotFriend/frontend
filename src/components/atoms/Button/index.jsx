@@ -20,7 +20,7 @@ const sizeStyle = css`
   ${({ size }) =>
     size === 'large' &&
     css`
-      width: 15rem;
+      width: 10rem;
       height: 3rem;
       font-size: 1.25rem;
       & + & {
@@ -31,7 +31,7 @@ const sizeStyle = css`
   ${({ size }) =>
     size === 'medium' &&
     css`
-      width: 13rem;
+      width: 5rem;
       height: 2.25rem;
       font-size: 1rem;
       & + & {
@@ -42,9 +42,9 @@ const sizeStyle = css`
     ${({ size }) =>
     size === 'small' &&
     css`
-      width: 10rem;
+      width: 3rem;
       height: 1.75rem;
-      font-size: 0.5rem;
+      font-size: 0.75rem;
       & + & {
         margin: 1rem;
       }
@@ -59,7 +59,9 @@ const StyledButton = styled.button`
   color: white;
   cursor: pointer;
   margin: 1rem;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* 크기 */
   ${sizeStyle}
 

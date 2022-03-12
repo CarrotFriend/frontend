@@ -1,6 +1,15 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+const colorStyle = css`
+  ${({ theme, color }) => {
+    const selected = theme.palette[color];
+    return css`
+      color: ${selected};
+    `;
+  }}
+`;
+
 const fontSize = css`
   ${({ size }) =>
     size === 'small' &&
@@ -23,12 +32,13 @@ const fontSize = css`
 
 const StyledText = styled.div`
   ${fontSize}
+  ${colorStyle}
 `;
 
-const Text = ({ props }) => {
+const Text = ({ children, ...rest }) => {
   return (
-    <StyledText size={props.size} color={props.color}>
-      {props.text}
+    <StyledText size={rest.size} color={rest.color}>
+      {children}
     </StyledText>
   );
 };

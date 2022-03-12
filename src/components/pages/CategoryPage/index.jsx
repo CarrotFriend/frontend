@@ -206,7 +206,7 @@ const CategoryPage = () => {
   return (
     <StyledCategoryPage>
       <TitleArea>
-        <Text props={data.title} />
+        <Text size={data.title.size}>{data.title.text}</Text>
       </TitleArea>
       <Text props={data.description} />
       <CategoryFormBox action="" method="post">
@@ -217,7 +217,7 @@ const CategoryPage = () => {
           isReversed={false}
         />
         <Alert className="alert">적어도 하나를 선택해 주십시오.</Alert>
-        <Button size="medium" color="pink" clickBtn={clickBtn}>
+        <Button size="large" color="pink" clickBtn={clickBtn}>
           제출
         </Button>
       </CategoryFormBox>

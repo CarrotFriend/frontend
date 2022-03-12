@@ -204,7 +204,7 @@ const JoinPage = () => {
   return (
     <PageFrame>
       <StyledJoinPage>
-        <Text props={data.title} />
+        <Text size={data.title.size}>{data.title.text}</Text>
         <JoinFormBox action="" method="post">
           <InputLabelList
             inputList={inputs}
