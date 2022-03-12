@@ -18,3 +18,4 @@ Carrot Friend의 FrontEnd Repository 입니다.
 |2022.03.07|JoinPage 검사 로직 추가, 에러 수정|
 |2022.03.09|CategoryPage 추가 및 구현|
 |2022.03.10|JoinPage, CategoryPage 입력 유효성 검사 추가|
+|2022.03.12|TextList and HomePage 추가 및 view단 완성<br/>게시글 조회 목업 완료
