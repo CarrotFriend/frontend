@@ -1,6 +1,14 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+const isBtn = css`
+  ${({ isBtn }) =>
+    isBtn &&
+    css`
+      cursor: pointer;
+    `}
+`;
+
 const fontSize = css`
   ${({ size }) =>
     size === 'small' &&
@@ -18,17 +26,19 @@ const fontSize = css`
     size === 'large' &&
     css`
       font-size: 3rem;
+      width: 3rem;
     `}
 `;
 
 const StyledLabel = styled.label`
-  ${fontSize}// margin-bottom: 0.5rem;
+  ${fontSize}
+  ${isBtn}
 `;
 
-const Label = ({ child, target, ...rest }) => {
+const Label = ({ children, target, ...rest }) => {
   return (
     <StyledLabel htmlFor={target} {...rest}>
-      {child}
+      {children}
     </StyledLabel>
   );
 };

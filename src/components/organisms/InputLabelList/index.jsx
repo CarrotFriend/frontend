@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 import styled, { css } from 'styled-components';
 import Input from '../../atoms/Input';
 import Label from '../../atoms/Label';
@@ -42,19 +42,20 @@ const StyledInputLabelList = styled.div`
 const InputLabelList = ({ flex, isReversed, labelList, inputList }) => {
   return (
     <StyledInputLabelList flex={flex.listDirection}>
-      {labelList.map((label, idx) => {
+      {labelList.map(({ child, ...label }, idx) => {
+        console.log(child, label);
         const { name, ...inputRest } = inputList[idx];
         return (
           <StyledInputLabel key={name + 99} flex={flex.contentDirection}>
             {isReversed ? (
               <>
-                <Label {...label} />
+                <Label {...label}>{child}</Label>
                 <Input name={name} {...inputRest} />
               </>
             ) : (
               <>
                 <Input name={name} {...inputRest} />
-                <Label {...label} />
+                <Label {...label}>{child}</Label>
               </>
             )}
           </StyledInputLabel>

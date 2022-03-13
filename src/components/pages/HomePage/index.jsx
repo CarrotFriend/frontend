@@ -5,6 +5,7 @@ import Button from '../../atoms/Button';
 import TextList from '../../organisms/TextList';
 import ButtonList from '../../organisms/ButtonList';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const commonTextAttribue = {
   // size: 'small',
@@ -172,26 +173,24 @@ const StyledHomePage = styled.div`
 `;
 
 const HomePage = () => {
+  const navigate = useNavigate();
   return (
     <StyledHomePage>
-      <Header>
-        <Text size="large" color="white">
-          공백공백공백
-        </Text>
-        <Text size="large">당근친구</Text>
-        <ButtonList list={navBtns} flex="row" />
-      </Header>
       <ContentBox>
         {dummyData.texts.map(({ image, ...rest }, idx) => {
           return (
-            <ContentList key={image + idx}>
+            <ContentList key={image + idx} onClick={() => navigate('/detail')}>
               <Image src={image} alt="content" size="large" />
               <TextList data={rest} flex="column" />
             </ContentList>
           );
         })}
         <FixedButton>
-          <Button size="medium" color="pink">
+          <Button
+            size="medium"
+            color="pink"
+            clickBtn={() => navigate('/write')}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"

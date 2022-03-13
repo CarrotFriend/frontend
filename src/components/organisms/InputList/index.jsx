@@ -13,6 +13,8 @@ const flex = css`
 const StyledInputList = styled.div`
   display: flex;
   ${flex}
+  height: 20rem;
+  justify-content: space-evenly;
 `;
 
 const InputList = ({ flex, list }) => {

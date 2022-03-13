@@ -1,6 +1,16 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+const onlyBottomline = css`
+  ${({ onlyBottomline }) =>
+    onlyBottomline &&
+    css`
+      border: none;
+      &:focus {
+        outline: none;
+      }
+    `}
+`;
 const inputSize = css`
   ${({ size }) =>
     size === 'medium' &&
@@ -31,6 +41,7 @@ const StyledInput = styled.input`
   font-size: 0.75rem;
   padding-left: 0.5rem;
   ${inputSize}
+  ${onlyBottomline}
 `;
 
 const Input = ({ value, setValue, ...rest }) => {

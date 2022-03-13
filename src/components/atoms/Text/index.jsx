@@ -1,6 +1,13 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+const isBtn = css`
+  ${({ isBtn }) =>
+    isBtn &&
+    css`
+      cursor: pointer;
+    `}
+`;
 const colorStyle = css`
   ${({ theme, color }) => {
     const selected = theme.palette[color];
@@ -33,11 +40,13 @@ const fontSize = css`
 const StyledText = styled.div`
   ${fontSize}
   ${colorStyle}
+  ${isBtn}
 `;
 
 const Text = ({ children, ...rest }) => {
+  const { size, color, isBtn, clickHandler } = rest;
   return (
-    <StyledText size={rest.size} color={rest.color}>
+    <StyledText size={size} color={color} isBtn={isBtn} onClick={clickHandler}>
       {children}
     </StyledText>
   );
