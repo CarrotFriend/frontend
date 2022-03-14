@@ -19,3 +19,5 @@ Carrot Friend의 FrontEnd Repository 입니다.
 |2022.03.09|CategoryPage 추가 및 구현|
 |2022.03.10|JoinPage, CategoryPage 입력 유효성 검사 추가|
 |2022.03.12|TextList and HomePage 추가 및 view단 완성<br/>게시글 조회 목업 완료
+|2022.03.13|WritePage 추가 및 view단 완성
+|2022.03.14|DetailPage 추가 및 view단 완성<br/>Textarea molecule 추가
