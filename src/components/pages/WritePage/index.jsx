@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../../atoms/Button';
 import Label from '../../atoms/Label';
 import Input from '../../atoms/Input';
-import Image from '../../atoms/Image';
 import styled, { css } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import defaultImg from '../../../images/defaultImg.png';
+import Textarea from '../../atoms/Textarea';
 
 const commonTextAttribue = {
   size: 'medium',
@@ -41,8 +40,8 @@ const data = {
   },
   textarea: {
     placeholder: '내용을 입력하세요',
+    size: 'medium',
     name: 'content',
-    accept: '',
   },
   option: ['카테고리', '옵션1', '옵션2', '옵션3', '옵션4', '옵션5'],
 };
@@ -108,8 +107,6 @@ const WritePage = () => {
     navigate('/detail');
   };
   const selectFile = (e) => {
-    // 파일 이미지 추출해서 옆에 공간에 놓기
-    // 만들고 그냥 옆에 놔보고 안되면 부모 하나 만들어서 flex 주기
     const imageContent = document.querySelector('.image-content');
     const url = URL.createObjectURL(e.target.files[0]);
     if (imageContent.hasChildNodes()) {
@@ -165,7 +162,7 @@ const WritePage = () => {
             accept="image/*"
             onChange={selectFile}
           />
-          <StyledTextArea {...data.textarea} />
+          <Textarea {...data.textarea} />
           <StyledHr />
         </DiffentInputList>
         <Button color="pink" size="large">

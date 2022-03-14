@@ -38,6 +38,8 @@ const fontSize = css`
 `;
 
 const StyledText = styled.div`
+  display: flex;
+  align-items: center;
   ${fontSize}
   ${colorStyle}
   ${isBtn}

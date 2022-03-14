@@ -18,7 +18,7 @@ const navBtns = [
   {
     size: 'small',
     color: 'pink',
-    child: '채팅',
+    child: '쪽지',
   },
   {
     size: 'small',

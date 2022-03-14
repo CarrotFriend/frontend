@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 
 const commonTextAttribue = {
   // size: 'small',
-  color: '',
 };
 const navBtns = [
   {
@@ -28,111 +27,104 @@ const navBtns = [
     child: '알림',
   },
 ];
-const dummyData = {
-  texts: [
-    {
-      ...commonTextAttribue,
-      id: '1',
-      title: '궁동 밥 드실분',
-      image: '',
-      regdate: '2022-01-01',
-      tag: '#궁동 #맛집',
-    },
-    {
-      ...commonTextAttribue,
-      id: '2',
-      title: '자전거 엑스포!',
-      image: '',
-      regdate: '2022-01-24',
-      tag: '#엑스포 #자전거',
-    },
-    {
-      ...commonTextAttribue,
-      id: '3',
-      title: '모각코 모집',
-      image: '',
-      regdate: '2022-02-05',
-      tag: '#모각코',
-    },
-    {
-      ...commonTextAttribue,
-      id: '4',
-      title: '롤 동료 모집',
-      image: '',
-      regdate: '2022-03-07',
-      tag: '#롤 #게임 #승급전',
-    },
-    {
-      ...commonTextAttribue,
-      id: '1',
-      title: '궁동 밥 드실분',
-      image: '',
-      regdate: '2022-01-01',
-      tag: '#궁동 #맛집',
-    },
-    {
-      ...commonTextAttribue,
-      id: '2',
-      title: '자전거 엑스포!',
-      image: '',
-      regdate: '2022-01-24',
-      tag: '#엑스포 #자전거',
-    },
-    {
-      ...commonTextAttribue,
-      id: '3',
-      title: '모각코 모집',
-      image: '',
-      regdate: '2022-02-05',
-      tag: '#모각코',
-    },
-    {
-      ...commonTextAttribue,
-      id: '4',
-      title: '롤 동료 모집',
-      image: '',
-      regdate: '2022-03-07',
-      tag: '#롤 #게임 #승급전',
-    },
-    {
-      ...commonTextAttribue,
-      id: '1',
-      title: '궁동 밥 드실분',
-      image: '',
-      regdate: '2022-01-01',
-      tag: '#궁동 #맛집',
-    },
-    {
-      ...commonTextAttribue,
-      id: '2',
-      title: '자전거 엑스포!',
-      image: '',
-      regdate: '2022-01-24',
-      tag: '#엑스포 #자전거',
-    },
-    {
-      ...commonTextAttribue,
-      id: '3',
-      title: '모각코 모집',
-      image: '',
-      regdate: '2022-02-05',
-      tag: '#모각코',
-    },
-    {
-      ...commonTextAttribue,
-      id: '4',
-      title: '롤 동료 모집',
-      image: '',
-      regdate: '2022-03-07',
-      tag: '#롤 #게임 #승급전',
-    },
-  ],
-  title: {
-    text: '당근친구',
-    size: 'large',
-    color: '',
+const dummyData = [
+  {
+    ...commonTextAttribue,
+    id: '1',
+    title: '궁동 밥 드실분',
+    image: '',
+    regdate: '2022-01-01',
+    tag: '#궁동 #맛집',
   },
-};
+  {
+    ...commonTextAttribue,
+    id: '2',
+    title: '자전거 엑스포!',
+    image: '',
+    regdate: '2022-01-24',
+    tag: '#엑스포 #자전거',
+  },
+  {
+    ...commonTextAttribue,
+    id: '3',
+    title: '모각코 모집',
+    image: '',
+    regdate: '2022-02-05',
+    tag: '#모각코',
+  },
+  {
+    ...commonTextAttribue,
+    id: '4',
+    title: '롤 동료 모집',
+    image: '',
+    regdate: '2022-03-07',
+    tag: '#롤 #게임 #승급전',
+  },
+  {
+    ...commonTextAttribue,
+    id: '5',
+    title: '궁동 밥 드실분',
+    image: '',
+    regdate: '2022-01-01',
+    tag: '#궁동 #맛집',
+  },
+  {
+    ...commonTextAttribue,
+    id: '6',
+    title: '자전거 엑스포!',
+    image: '',
+    regdate: '2022-01-24',
+    tag: '#엑스포 #자전거',
+  },
+  {
+    ...commonTextAttribue,
+    id: '7',
+    title: '모각코 모집',
+    image: '',
+    regdate: '2022-02-05',
+    tag: '#모각코',
+  },
+  {
+    ...commonTextAttribue,
+    id: '8',
+    title: '롤 동료 모집',
+    image: '',
+    regdate: '2022-03-07',
+    tag: '#롤 #게임 #승급전',
+  },
+  {
+    ...commonTextAttribue,
+    id: '9',
+    title: '궁동 밥 드실분',
+    image: '',
+    regdate: '2022-01-01',
+    tag: '#궁동 #맛집',
+  },
+  {
+    ...commonTextAttribue,
+    id: '10',
+    title: '자전거 엑스포!',
+    image: '',
+    regdate: '2022-01-24',
+    tag: '#엑스포 #자전거',
+  },
+  {
+    ...commonTextAttribue,
+    id: '11',
+    title: '모각코 모집',
+    image: '',
+    regdate: '2022-02-05',
+    tag: '#모각코',
+  },
+  {
+    ...commonTextAttribue,
+    id: '12',
+    title: '롤 동료 모집',
+    image: '',
+    regdate: '2022-03-07',
+    tag: '#롤 #게임 #승급전',
+  },
+];
 
 const FixedButton = styled.div`
   position: fixed;
@@ -174,14 +166,24 @@ const StyledHomePage = styled.div`
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const images = [...dummyData.map(({ image, ...rest }, idx) => image)];
   return (
     <StyledHomePage>
       <ContentBox>
-        {dummyData.texts.map(({ image, ...rest }, idx) => {
+        {dummyData.map(({ image, ...rest }, idx) => {
+          const { id, title, regdate, tag } = rest;
+          const dataList = [
+            { id: id, text: title },
+            { id: id + 1, text: regdate },
+            { id: id + 2, text: tag },
+          ];
           return (
-            <ContentList key={image + idx} onClick={() => navigate('/detail')}>
-              <Image src={image} alt="content" size="large" />
-              <TextList data={rest} flex="column" />
+            <ContentList
+              key={images[idx] + idx}
+              onClick={() => navigate('/detail')}
+            >
+              <Image src={images[idx]} alt="content" size="large" />
+              <TextList list={dataList} flex="column" />
             </ContentList>
           );
         })}

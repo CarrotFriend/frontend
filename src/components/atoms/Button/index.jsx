@@ -78,7 +78,8 @@ const Button = ({ children, clickBtn, ...rest }) => {
 };
 
 Button.defaultProps = {
-  color: 'blue',
+  color: 'pink',
+  size: 'small',
 };
 
 export default Button;

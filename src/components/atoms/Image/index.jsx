@@ -16,6 +16,12 @@ const imgSize = css`
       width: 6rem;
       height: 6rem;
     `}
+    ${({ size }) =>
+    size === 'xlarge' &&
+    css`
+      width: 10rem;
+      height: 10rem;
+    `}
 `;
 const StyledImage = styled.img`
   width: 2rem;

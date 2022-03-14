@@ -17,19 +17,16 @@ const StyledTextList = styled.div`
   margin-left: 1rem;
 `;
 
-const TextList = ({ flex, data }) => {
-  const { id, title, regdate, tag, ...rest } = data;
+const TextList = ({ flex, list }) => {
   return (
-    <StyledTextList key={id} flex={flex}>
-      <Text key={id} size="medium" {...rest}>
-        {title}
-      </Text>
-      <Text key={id + 1} {...rest}>
-        {regdate}
-      </Text>
-      <Text key={id + 2} {...rest}>
-        {tag}
-      </Text>
+    <StyledTextList key={list[0][0]} flex={flex}>
+      {list.map(({ id, text, ...rest }) => {
+        return (
+          <Text key={id} {...rest}>
+            {text}
+          </Text>
+        );
+      })}
     </StyledTextList>
   );
 };
