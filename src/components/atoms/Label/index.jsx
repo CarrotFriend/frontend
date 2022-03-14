@@ -26,7 +26,6 @@ const fontSize = css`
     size === 'large' &&
     css`
       font-size: 3rem;
-      width: 3rem;
     `}
 `;
 

@@ -52,6 +52,22 @@ const StyledHr = styled.hr`
   margin: 1rem 0;
 `;
 
+const StyledImage = styled.div`
+  width: 6rem;
+  height: 100%;
+  margin-left: 1rem;
+`;
+const StyledLabel = styled.div`
+  padding: 0.5rem;
+  border: 0.5px solid gray;
+`;
+
+const ImageContent = styled.div`
+  display: flex;
+  width: 100%;
+  height: 6rem;
+  margin-left: 1rem;
+`;
 const StyledSelect = styled.select`
   ${commonBorderStyle}
   padding-left: 0.8rem;
@@ -91,6 +107,22 @@ const WritePage = () => {
   const handleClick = () => {
     navigate('/detail');
   };
+  const selectFile = (e) => {
+    // 파일 이미지 추출해서 옆에 공간에 놓기
+    // 만들고 그냥 옆에 놔보고 안되면 부모 하나 만들어서 flex 주기
+    const imageContent = document.querySelector('.image-content');
+    const url = URL.createObjectURL(e.target.files[0]);
+    if (imageContent.hasChildNodes()) {
+      imageContent.childNodes[0].src = url;
+      return;
+    }
+    const img = document.createElement('img');
+    img.setAttribute('src', url);
+    img.setAttribute('alt', 'default');
+    img.setAttribute('width', '100%');
+    img.setAttribute('height', '100%');
+    imageContent.appendChild(img);
+  };
   return (
     <StyledWritePage>
       <FormBox action="" method="POST">
@@ -108,11 +140,31 @@ const WritePage = () => {
             })}
           </StyledSelect>
           <StyledHr />
-          <Label target="imgInput" isBtn="true" size="large">
-            <Image src={defaultImg} alt="default" size="large" />
-          </Label>
+          <ImageContent>
+            <StyledLabel>
+              <Label target="imgInput" isBtn="true" size="large">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="100%"
+                  height="100%"
+                  fill="currentColor"
+                  className="bi bi-camera"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z" />
+                  <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
+                </svg>
+              </Label>
+            </StyledLabel>
+            <StyledImage className="image-content"></StyledImage>
+          </ImageContent>
           <StyledHr />
-          <StyledImageInput type="file" id="imgInput" accept="image/*" />
+          <StyledImageInput
+            type="file"
+            id="imgInput"
+            accept="image/*"
+            onChange={selectFile}
+          />
           <StyledTextArea {...data.textarea} />
           <StyledHr />
         </DiffentInputList>
