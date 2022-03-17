@@ -62,6 +62,7 @@ const StyledLoginPage = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
   width: 50rem;
   height: 65%;
   text-align: center;

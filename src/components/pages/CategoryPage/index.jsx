@@ -167,6 +167,8 @@ const Alert = styled.div`
 `;
 
 const TitleArea = styled.div`
+  display: flex;
+  justify-content: center;
   width: 100%;
   border-bottom: 1px solid gray;
   text-align: center;

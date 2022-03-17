@@ -113,6 +113,8 @@ const WritePage = () => {
       imageContent.childNodes[0].src = url;
       return;
     }
+    console.log(e.target.files[0]);
+    console.log(url);
     const img = document.createElement('img');
     img.setAttribute('src', url);
     img.setAttribute('alt', 'default');

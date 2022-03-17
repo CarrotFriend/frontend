@@ -43,7 +43,6 @@ const InputLabelList = ({ flex, isReversed, labelList, inputList }) => {
   return (
     <StyledInputLabelList flex={flex.listDirection}>
       {labelList.map(({ child, ...label }, idx) => {
-        console.log(child, label);
         const { name, ...inputRest } = inputList[idx];
         return (
           <StyledInputLabel key={name + 99} flex={flex.contentDirection}>
