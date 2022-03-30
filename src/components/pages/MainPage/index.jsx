@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Text from '../../atoms/Text';
-import Button from '../../atoms/Button';
 import ButtonList from '../../organisms/ButtonList';
 import HomePage from '../HomePage';
 import DetailPage from '../DetailPage';
@@ -20,11 +19,11 @@ const navBtns = [
     color: 'pink',
     child: '쪽지',
   },
-  {
-    size: 'small',
-    color: 'pink',
-    child: '알림',
-  },
+  // {
+  //   size: 'small',
+  //   color: 'pink',
+  //   child: '알림',
+  // },
 ];
 const Header = styled.header`
   display: flex;
