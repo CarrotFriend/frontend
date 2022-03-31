@@ -8,6 +8,12 @@ import WritePage from '../WritePage';
 
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
+if (process.env.NODE_ENV === 'development') {
+  const { worker } = require('../../../mock/browser');
+
+  worker.start();
+}
+
 const navBtns = [
   {
     size: 'small',
@@ -47,6 +53,9 @@ const MainPage = () => {
   const clickTitle = () => {
     navigate('/');
   };
+  fetch('/api/products')
+    .then((res) => res.json())
+    .then((res) => console.log(res));
   return (
     <StyledMainPage>
       <Header>

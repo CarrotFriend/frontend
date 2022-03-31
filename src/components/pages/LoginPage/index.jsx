@@ -4,6 +4,83 @@ import InputList from '../../organisms/InputList';
 import ButtonList from '../../organisms/ButtonList';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+if (process.env.NODE_ENV === 'development') {
+  const { worker } = require('../../../mock/browser');
+
+  worker.start();
+}
+
+const LoginPage = () => {
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
+
+  const [alert, setAlert] = useState('');
+  const navigate = useNavigate();
+
+  const loginInputs = [
+    {
+      ...data.loginInputs[0],
+      value: id,
+      setValue: setId,
+    },
+    {
+      ...data.loginInputs[1],
+      value: pw,
+      setValue: setPw,
+    },
+  ];
+  const btns = [
+    {
+      ...data.btns[0],
+      clickBtn: (e) => {
+        e.preventDefault();
+        if (id.trim() === '') {
+          setAlert('아이디를 입력해주세요!');
+          e.preventDefault();
+        } else if (pw.trim() === '') {
+          setAlert('비밀번호를 입력해주세요!');
+          e.preventDefault();
+        }
+        axios({
+          method: 'post',
+          url: '/auth/login',
+          header: {
+            accept: '*/*',
+            'Content-Type': 'application/json',
+          },
+          data: {
+            userId: id,
+            pw,
+          },
+        })
+          .then((res) => console.log(res))
+          .catch();
+      },
+    },
+    {
+      ...data.btns[1],
+      clickBtn: (e) => {
+        e.preventDefault();
+        navigate('/join');
+      },
+    },
+  ];
+
+  return (
+    <PageFrame>
+      <StyledLoginPage>
+        <Text size={data.title.size}>{data.title.text}</Text>
+        <LoginFormBox>
+          <InputList list={loginInputs} flex="column" />
+          <AlertInput>{alert}</AlertInput>
+          <ButtonList list={btns} flex="column" />
+        </LoginFormBox>
+      </StyledLoginPage>
+    </PageFrame>
+  );
+};
 
 const data = {
   loginInputs: [
@@ -74,62 +151,5 @@ const PageFrame = styled.div`
   align-items: center;
   height: 50rem;
 `;
-
-// join 버튼은 클릭하면 JoinPage로 Link or Redirect
-
-const LoginPage = () => {
-  const [id, setId] = useState('');
-  const [pw, setPw] = useState('');
-
-  const [alert, setAlert] = useState('');
-  const navigate = useNavigate();
-
-  const loginInputs = [
-    {
-      ...data.loginInputs[0],
-      value: id,
-      setValue: setId,
-    },
-    {
-      ...data.loginInputs[1],
-      value: pw,
-      setValue: setPw,
-    },
-  ];
-  const btns = [
-    {
-      ...data.btns[0],
-      clickBtn: (e) => {
-        if (id.trim() === '') {
-          setAlert('아이디를 입력해주세요!');
-          e.preventDefault();
-        } else if (pw.trim() === '') {
-          setAlert('비밀번호를 입력해주세요!');
-          e.preventDefault();
-        }
-      },
-    },
-    {
-      ...data.btns[1],
-      clickBtn: (e) => {
-        e.preventDefault();
-        navigate('/join');
-      },
-    },
-  ];
-
-  return (
-    <PageFrame>
-      <StyledLoginPage>
-        <Text size={data.title.size}>{data.title.text}</Text>
-        <LoginFormBox action="" method="post">
-          <InputList list={loginInputs} flex="column" />
-          <AlertInput>{alert}</AlertInput>
-          <ButtonList list={btns} flex="column" />
-        </LoginFormBox>
-      </StyledLoginPage>
-    </PageFrame>
-  );
-};
 
 export default LoginPage;
