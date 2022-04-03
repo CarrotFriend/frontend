@@ -7,11 +7,25 @@ const handlers = [
       return res(
         ctx.status(200),
         ctx.json({
-          items: [{ name: 'product-1' }, { name: 'product-2' }],
+          state: 200,
+          data: {
+            grantType: 'Bearer',
+            accessToken:
+              'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjMiLCJhdXRoIjoiVVNFUl9ST0xFIiwiaWF0IjoxNjQ3NTQzNjk4LCJleHAiOjE2NDc1NDU0OTh9.FYwtEcgwc6rNPSdSdHHTArPrbairve3RlGs1t1LUjWF1WV0MR_a_cG4DM3kB2h5wcOD02ARC1plrJBsasFCeHw',
+            refreshToken:
+              'eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2NDc1NDM2OTgsImV4cCI6MTY0ODE0ODQ5OH0._Ni_NyxB8WddyJRCAPyE7NfbCV0MA01oD7DmMoE9T2Lr1ciorAU8VhS9DCs5FlT_sJPHye0uVZ60C_ru0mAZ-A',
+            accessTokenExpireTime: '2022-03-24T19:01:38.239+00:00',
+          },
         })
       );
     }
-    return res(ctx.status(401));
+    return res(
+      ctx.status(200),
+      ctx.json({
+        state: 401,
+        data: null,
+      })
+    );
   }),
 ];
 

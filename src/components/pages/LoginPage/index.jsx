@@ -55,7 +55,11 @@ const LoginPage = () => {
             pw,
           },
         })
-          .then((res) => console.log(res))
+          .then((res) => {
+            res.data.state === 200
+              ? console.log(res)
+              : setAlert('아이디, 패스워드를 정확히 입력해주세요');
+          })
           .catch();
       },
     },

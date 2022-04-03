@@ -14,6 +14,31 @@ if (process.env.NODE_ENV === 'development') {
   worker.start();
 }
 
+const MainPage = () => {
+  const navigate = useNavigate();
+  const clickTitle = () => {
+    navigate('/');
+  };
+  return (
+    <StyledMainPage>
+      <Header>
+        <Text size="large" color="white">
+          공백공백공백
+        </Text>
+        <Text size="large" isBtn="true" clickHandler={clickTitle}>
+          당근친구
+        </Text>
+        <ButtonList list={navBtns} flex="row" />
+      </Header>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/detail" element={<DetailPage />} />
+        <Route path="/write" element={<WritePage />} />
+      </Routes>
+    </StyledMainPage>
+  );
+};
+
 const navBtns = [
   {
     size: 'small',
@@ -47,33 +72,5 @@ const StyledMainPage = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-const MainPage = () => {
-  const navigate = useNavigate();
-  const clickTitle = () => {
-    navigate('/');
-  };
-  fetch('/api/products')
-    .then((res) => res.json())
-    .then((res) => console.log(res));
-  return (
-    <StyledMainPage>
-      <Header>
-        <Text size="large" color="white">
-          공백공백공백
-        </Text>
-        <Text size="large" isBtn="true" clickHandler={clickTitle}>
-          당근친구
-        </Text>
-        <ButtonList list={navBtns} flex="row" />
-      </Header>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/detail" element={<DetailPage />} />
-        <Route path="/write" element={<WritePage />} />
-      </Routes>
-    </StyledMainPage>
-  );
-};
 
 export default MainPage;
