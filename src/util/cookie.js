@@ -2,14 +2,14 @@ import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();
 
-const option = {
+const refreshTokenOption = {
   httpOnly: true,
   secure: true,
 };
-export const setCookie = (name, value) => {
-  return cookies.set(name, value, { ...option });
+export const setRefreshToken = (value) => {
+  return cookies.set('refreshToken', value, { ...refreshTokenOption });
 };
 
-export const getCookie = (name) => {
-  return cookies.get(name);
+export const getRefreshToken = () => {
+  return cookies.get('refreshToken');
 };
