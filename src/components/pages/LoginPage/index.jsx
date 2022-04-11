@@ -5,6 +5,7 @@ import ButtonList from '../../organisms/ButtonList';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { login } from './login';
 
 if (process.env.NODE_ENV === 'development') {
   const { worker } = require('../../../mock/browser');
@@ -33,6 +34,7 @@ const LoginPage = () => {
   ];
   const btns = [
     {
+      // 로그인 버튼
       ...data.btns[0],
       clickBtn: (e) => {
         e.preventDefault();
@@ -43,27 +45,30 @@ const LoginPage = () => {
           setAlert('비밀번호를 입력해주세요!');
           e.preventDefault();
         }
-        axios({
-          method: 'post',
-          url: '/auth/login',
-          header: {
-            accept: '*/*',
-            'Content-Type': 'application/json',
-          },
-          data: {
-            userId: id,
-            pw,
-          },
-        })
-          .then((res) => {
-            res.data.state === 200
-              ? console.log(res)
-              : setAlert('아이디, 패스워드를 정확히 입력해주세요');
-          })
-          .catch();
+        login(id, pw, setAlert);
+
+        // axios({
+        //   method: 'post',
+        //   url: '/auth/login',
+        //   header: {
+        //     accept: '*/*',
+        //     'Content-Type': 'application/json',
+        //   },
+        //   data: {
+        //     userId: id,
+        //     pw,
+        //   },
+        // })
+        //   .then((res) => {
+        // res.data.state === 200
+        //   ? console.log(res)
+        //   : setAlert('아이디, 패스워드를 정확히 입력해주세요');
+        //   })
+        //   .catch();
       },
     },
     {
+      // 회원가입 버튼
       ...data.btns[1],
       clickBtn: (e) => {
         e.preventDefault();

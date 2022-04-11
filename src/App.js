@@ -6,36 +6,6 @@ import LoginPage from './components/pages/LoginPage';
 import JoinPage from './components/pages/JoinPage';
 import CategoryPage from './components/pages/CategoryPage';
 
-// const AppBlock = styled.div`
-//   width: 512px;
-//   margin: 0 auto;
-//   margin-top: 4rem;
-//   border: 1px solid black;
-//   padding: 1rem;
-// `;
-// const list = [
-//   {
-//     type: 'text',
-//     placeholder: '제목 입력해줘',
-//     value: '',
-//     name: 'jojo',
-
-//     // outline: ,
-//   },
-//   {
-//     type: 'button',
-//     placeholder: '',
-//     value: 'click!',
-//     name: 'btn',
-//   },
-//   {
-//     type: 'email',
-//     placeholder: 'navermail',
-//     value: '',
-//     name: 'mailmail',
-//   },
-// ];
-
 function App() {
   return (
     <div className="App">
