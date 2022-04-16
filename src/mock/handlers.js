@@ -11,6 +11,7 @@ const handlers = [
     if (userId === 'abc' && pw === '1234') {
       return res(
         ctx.status(200),
+        ctx.delay(1000),
         ctx.json({
           state: 200,
           data: {
