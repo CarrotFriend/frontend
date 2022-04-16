@@ -5,6 +5,7 @@ import MainPage from './components/pages/MainPage';
 import LoginPage from './components/pages/LoginPage';
 import JoinPage from './components/pages/JoinPage';
 import CategoryPage from './components/pages/CategoryPage';
+import PrivateRoute from './util/PrivateRoute';
 
 function App() {
   return (
@@ -21,7 +22,15 @@ function App() {
       >
         <BrowserRouter>
           <Routes>
-            <Route path="/*" element={<MainPage />} />
+            {/* <Route path="/*" element={<MainPage />} /> */}
+            <Route
+              path="/*"
+              element={
+                <PrivateRoute>
+                  <MainPage />
+                </PrivateRoute>
+              }
+            />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/join" element={<JoinPage />} />
             <Route path="/category" element={<CategoryPage />} />

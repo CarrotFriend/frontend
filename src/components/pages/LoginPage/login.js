@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { setRefreshToken } from '../../../util/cookie';
-import logout from '../../../util/logout';
 import reissue from '../../../util/reissue';
 
 export const login = async (id, pw, setAlert) => {
@@ -17,7 +16,6 @@ export const login = async (id, pw, setAlert) => {
         pw,
       },
     });
-    console.log('hihihi');
 
     // 나중에 redux에 넣게 리팩토링
     localStorage.setItem('accessToken', data.data.accessToken);
@@ -25,9 +23,13 @@ export const login = async (id, pw, setAlert) => {
     setTimeout(() => reissue(), 1000 * 60 * 14);
     // console.log(new Date(data.data.accessTokenExpireTime));
     data.state === 200
-      ? setRefreshToken(data.data.refreshToken)
+      ? loginSuccess(data.data.refreshToken)
       : setAlert('아이디, 패스워드를 정확히 입력해주세요');
   } catch (err) {
     console.log(err);
   }
+};
+
+const loginSuccess = (refreshToken) => {
+  setRefreshToken(refreshToken);
 };
