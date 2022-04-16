@@ -27,6 +27,7 @@ const handlers = [
     }
     return res(
       ctx.status(200),
+      ctx.delay(1000),
       ctx.json({
         state: 401,
         data: null,

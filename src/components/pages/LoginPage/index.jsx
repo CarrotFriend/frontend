@@ -4,7 +4,6 @@ import InputList from '../../organisms/InputList';
 import ButtonList from '../../organisms/ButtonList';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { login } from './login';
 
 if (process.env.NODE_ENV === 'development') {
@@ -36,7 +35,7 @@ const LoginPage = () => {
     {
       // 로그인 버튼
       ...data.btns[0],
-      clickBtn: (e) => {
+      clickBtn: async (e) => {
         e.preventDefault();
         if (id.trim() === '') {
           setAlert('아이디를 입력해주세요!');
@@ -45,26 +44,8 @@ const LoginPage = () => {
           setAlert('비밀번호를 입력해주세요!');
           e.preventDefault();
         }
-        login(id, pw, setAlert);
-
-        // axios({
-        //   method: 'post',
-        //   url: '/auth/login',
-        //   header: {
-        //     accept: '*/*',
-        //     'Content-Type': 'application/json',
-        //   },
-        //   data: {
-        //     userId: id,
-        //     pw,
-        //   },
-        // })
-        //   .then((res) => {
-        // res.data.state === 200
-        //   ? console.log(res)
-        //   : setAlert('아이디, 패스워드를 정확히 입력해주세요');
-        //   })
-        //   .catch();
+        const loggedIn = await login(id, pw, setAlert);
+        if (loggedIn) navigate('/');
       },
     },
     {

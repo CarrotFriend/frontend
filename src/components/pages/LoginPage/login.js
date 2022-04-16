@@ -16,20 +16,22 @@ export const login = async (id, pw, setAlert) => {
         pw,
       },
     });
-
-    // 나중에 redux에 넣게 리팩토링
-    localStorage.setItem('accessToken', data.data.accessToken);
-    // 쿠키에 리프레쉬 토큰 셋하면서 access 유효기간 만큼 set timeout도 걸어주기
-    setTimeout(() => reissue(), 1000 * 60 * 14);
     // console.log(new Date(data.data.accessTokenExpireTime));
-    data.state === 200
-      ? loginSuccess(data.data.refreshToken)
-      : setAlert('아이디, 패스워드를 정확히 입력해주세요');
+    return data.state === 200 ? loginSuccess(data.data) : loginFail(setAlert);
   } catch (err) {
     console.log(err);
   }
 };
 
-const loginSuccess = (refreshToken) => {
-  setRefreshToken(refreshToken);
+const loginSuccess = (data) => {
+  // 나중에 redux에 넣게 리팩토링
+  localStorage.setItem('accessToken', data.accessToken);
+  // 쿠키에 리프레쉬 토큰 셋하면서 access 유효기간 만큼 set timeout도 걸어주기
+  setTimeout(() => reissue(), 1000 * 60 * 14);
+  setRefreshToken(data.refreshToken);
+  return true;
+};
+const loginFail = (setAlert) => {
+  setAlert('아이디, 패스워드를 정확히 입력해주세요');
+  return false;
 };
