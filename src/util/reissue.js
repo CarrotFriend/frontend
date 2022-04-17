@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setRefreshToken } from './cookie';
-import logout from './logout';
+import invalidate from './invalidate';
 
 const reissue = () => {
   try {
@@ -19,7 +19,7 @@ const reissue = () => {
     // 유효기간 : 15분, 1분 전에 다시 reissue하기
     setTimeout(() => reissue(), 1000 * 60 * 14);
     // console.log(new Date(data.data.accessTokenExpireTime));
-    data.state === 200 ? setRefreshToken(data.data.refreshToken) : logout(); // refreshToken 만료
+    data.state === 200 ? setRefreshToken(data.data.refreshToken) : invalidate(); // refreshToken 만료
   } catch (err) {
     console.log(err);
   }

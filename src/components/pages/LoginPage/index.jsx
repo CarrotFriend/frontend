@@ -6,12 +6,6 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { login } from './login';
 
-if (process.env.NODE_ENV === 'development') {
-  const { worker } = require('../../../mock/browser');
-
-  worker.start();
-}
-
 const LoginPage = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');

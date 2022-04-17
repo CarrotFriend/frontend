@@ -1,9 +1,97 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Text from '../../atoms/Text';
 import InputLabelList from '../../organisms/InputLabelList';
 import ButtonList from '../../organisms/ButtonList';
 import styled from 'styled-components';
+import { join } from './join';
+
+const JoinPage = () => {
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
+  const [pwcheck, setPwcheck] = useState('');
+  const [username, setUsername] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [date, setDate] = useState('');
+  const [alert, setAlert] = useState('');
+  const navigate = useNavigate();
+
+  const stateList = [
+    [id, setId],
+    [pw, setPw],
+    [pwcheck, setPwcheck],
+    [username, setUsername],
+    [nickname, setNickname],
+    [email, setEmail],
+    [date, setDate],
+  ];
+  const inputs = stateList.map(([value, setValue], idx) => {
+    return {
+      ...data.inputs[idx],
+      value,
+      setValue,
+    };
+  });
+
+  // Api 받고 아이디 중복 체크만 확인
+  const clickBtn = async (e) => {
+    const reg_email =
+      /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+    if (id.trim() === '' || id.trim().length < 4) {
+      setAlert('아이디를 최소 4자 이상 입력해주세요.');
+      e.preventDefault();
+    } else if (pw.trim() === '' || pw.trim().length < 4) {
+      setAlert('비밀번호를 최소 4자 이상 입력해주세요.');
+      e.preventDefault();
+    } else if (pw.trim() !== pwcheck.trim()) {
+      setAlert('비밀번호가 일치하지 않습니다.');
+      e.preventDefault();
+    } else if (username.trim() === '' || username.length < 2) {
+      setAlert('이름을 최소 1자 이상 입력해주세요.');
+      e.preventDefault();
+    } else if (nickname.trim() === '' || nickname.length < 2) {
+      setAlert('닉네임을 최소 1자 이상 입력해주세요.');
+      e.preventDefault();
+    } else if (!reg_email.test(email)) {
+      setAlert('이메일 양식을 올바르게 입력해주세요.');
+      e.preventDefault();
+    } else if (date.trim() === '') {
+      setAlert('생년월일을 선택해주세요.');
+      e.preventDefault();
+    } else {
+      e.preventDefault();
+      const isJoined = await join({ id, pw, username, nickname, email, date });
+      if (isJoined) navigate('/login');
+    }
+  };
+
+  const btns = [
+    {
+      ...data.btns[0],
+      clickBtn: clickBtn,
+    },
+  ];
+
+  return (
+    <PageFrame>
+      <StyledJoinPage>
+        <Text size={data.title.size}>{data.title.text}</Text>
+        <JoinFormBox action="" method="post">
+          <InputLabelList
+            inputList={inputs}
+            labelList={data.labels}
+            flex={InputLableListFlex}
+            isReversed={true}
+          />
+          <Alert>{alert}</Alert>
+          <ButtonList list={btns} flex="column" />
+          {/* <button onClick={join}>ddd</button> */}
+        </JoinFormBox>
+      </StyledJoinPage>
+    </PageFrame>
+  );
+};
 
 const commonInputAttribute = {
   size: 'small',
@@ -137,87 +225,5 @@ const PageFrame = styled.div`
   width: inherit;
   height: inherit;
 `;
-
-const JoinPage = () => {
-  const [id, setId] = useState('');
-  const [pw, setPw] = useState('');
-  const [pwcheck, setPwcheck] = useState('');
-  const [username, setUsername] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [email, setEmail] = useState('');
-  const [date, setDate] = useState('');
-  const [alert, setAlert] = useState('');
-  // const navigate = useNavigate();
-
-  const stateList = [
-    [id, setId],
-    [pw, setPw],
-    [pwcheck, setPwcheck],
-    [username, setUsername],
-    [nickname, setNickname],
-    [email, setEmail],
-    [date, setDate],
-  ];
-  const inputs = stateList.map(([value, setValue], idx) => {
-    return {
-      ...data.inputs[idx],
-      value,
-      setValue,
-    };
-  });
-
-  // Api 받고 아이디 중복 체크만 확인
-  const clickBtn = (e) => {
-    const reg_email =
-      /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-    if (id.trim() === '' || id.trim().length < 4) {
-      setAlert('아이디를 최소 4자 이상 입력해주세요.');
-      e.preventDefault();
-    } else if (pw.trim() === '' || pw.trim().length < 4) {
-      setAlert('비밀번호를 최소 4자 이상 입력해주세요.');
-      e.preventDefault();
-    } else if (pw.trim() !== pwcheck.trim()) {
-      setAlert('비밀번호가 일치하지 않습니다.');
-      e.preventDefault();
-    } else if (username.trim() === '' || username.length < 2) {
-      setAlert('이름을 최소 1자 이상 입력해주세요.');
-      e.preventDefault();
-    } else if (nickname.trim() === '' || nickname.length < 2) {
-      setAlert('닉네임을 최소 1자 이상 입력해주세요.');
-      e.preventDefault();
-    } else if (!reg_email.test(email)) {
-      setAlert('이메일 양식을 올바르게 입력해주세요.');
-      e.preventDefault();
-    } else if (date.trim() === '') {
-      setAlert('생년월일을 선택해주세요.');
-      e.preventDefault();
-    }
-  };
-
-  const btns = [
-    {
-      ...data.btns[0],
-      clickBtn: clickBtn,
-    },
-  ];
-
-  return (
-    <PageFrame>
-      <StyledJoinPage>
-        <Text size={data.title.size}>{data.title.text}</Text>
-        <JoinFormBox action="" method="post">
-          <InputLabelList
-            inputList={inputs}
-            labelList={data.labels}
-            flex={InputLableListFlex}
-            isReversed={true}
-          />
-          <Alert>{alert}</Alert>
-          <ButtonList list={btns} flex="column" />
-        </JoinFormBox>
-      </StyledJoinPage>
-    </PageFrame>
-  );
-};
 
 export default JoinPage;

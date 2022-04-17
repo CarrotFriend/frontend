@@ -1,6 +1,6 @@
-const logout = () => {
+const invalidate = () => {
   localStorage.removeItem('accessToken');
   window.location.href = '/login';
 };
 
-export default logout;
+export default invalidate;
