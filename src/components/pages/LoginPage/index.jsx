@@ -5,6 +5,8 @@ import ButtonList from '../../organisms/ButtonList';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { login } from './login';
+import user from './user';
+import checkCategoryList from './checkCategoryList';
 
 const LoginPage = () => {
   const [id, setId] = useState('');
@@ -39,7 +41,10 @@ const LoginPage = () => {
           e.preventDefault();
         }
         const loggedIn = await login(id, pw, setAlert);
-        if (loggedIn) navigate('/');
+        if (loggedIn) {
+          await user();
+          checkCategoryList(navigate);
+        }
       },
     },
     {

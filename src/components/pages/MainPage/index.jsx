@@ -8,12 +8,6 @@ import WritePage from '../WritePage';
 
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
-if (process.env.NODE_ENV === 'development') {
-  const { worker } = require('../../../mock/browser');
-
-  worker.start();
-}
-
 const MainPage = () => {
   const navigate = useNavigate();
   const clickTitle = () => {
@@ -23,7 +17,7 @@ const MainPage = () => {
     <StyledMainPage>
       <Header>
         <Text size="large" color="white">
-          공백공백공백
+          공백공백
         </Text>
         <Text size="large" isBtn="true" clickHandler={clickTitle}>
           당근친구

@@ -11,7 +11,7 @@ const handlers = [
     if (userId === 'abc' && pw === '1234') {
       return res(
         ctx.status(200),
-        ctx.delay(1000),
+        ctx.delay(300),
         ctx.json({
           state: 200,
           data: {
@@ -27,7 +27,7 @@ const handlers = [
     }
     return res(
       ctx.status(200),
-      ctx.delay(1000),
+      ctx.delay(300),
       ctx.json({
         state: 401,
         data: null,
@@ -38,7 +38,89 @@ const handlers = [
   rest.post('/auth/join', (req, res, ctx) => {
     return res(
       ctx.status(200),
-      ctx.delay(1000),
+      ctx.delay(500),
+      ctx.json({
+        state: 200,
+      })
+    );
+  }),
+
+  rest.get('/user', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.delay(200),
+      ctx.json({
+        state: 200,
+        data: {
+          id: 1,
+          userId: 'music468',
+          nickName: '조조수학',
+          categoryList: [],
+        },
+      })
+    );
+  }),
+
+  rest.get('/category', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.delay(200),
+      ctx.json({
+        state: 200,
+        data: [
+          // {
+          //   code: '1',
+          //   name: '카테고리1',
+          // },
+          // {
+          //   code: '2',
+          //   name: '카테고리2',
+          // },
+          // {
+          //   code: '3',
+          //   name: '카테고리3',
+          // },
+          // {
+          //   code: '4',
+          //   name: '카테고리4',
+          // },
+          // {
+          //   code: '5',
+          //   name: '카테고리5',
+          // },
+          {
+            code: '1',
+            name: '스터디',
+          },
+          {
+            code: '2',
+            name: '여행',
+          },
+          {
+            code: '3',
+            name: '교통',
+          },
+          {
+            code: '4',
+            name: '구인/구직',
+          },
+          {
+            code: '5',
+            name: '독서',
+          },
+          {
+            code: '6',
+            name: '맛집 탐방',
+          },
+        ],
+      })
+    );
+  }),
+
+  rest.post('/user/category', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.delay(200),
       ctx.json({
         state: 200,
       })

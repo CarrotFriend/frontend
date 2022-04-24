@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import Input from '../../atoms/Input';
 import Label from '../../atoms/Label';
