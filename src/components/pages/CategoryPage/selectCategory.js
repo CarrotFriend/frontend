@@ -9,7 +9,7 @@ const selectCategory = async (_inputValues) => {
   const categoryDto = inputValues.reduce((result, input) => {
     if (input.checked) {
       result.push({
-        code: '1',
+        code: input.dataset.code,
         name: input.name,
       });
     }
@@ -34,6 +34,14 @@ const selectCategory = async (_inputValues) => {
       categoryDto,
     },
   });
+  const myCategoryList = [...categoryList, ...categoryDto];
+  const newUser = {
+    categoryList: myCategoryList,
+    id,
+    userId,
+    nickName,
+  };
+  localStorage.setItem('user', JSON.stringify(newUser));
 };
 
 export default selectCategory;

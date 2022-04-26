@@ -44,11 +44,13 @@ const StyledInput = styled.input`
   ${onlyBottomline}
 `;
 
-const Input = ({ value, setValue, ...rest }) => {
+const Input = ({ value, setValue, code, ...rest }) => {
   const handle = (e) => {
     setValue && setValue(e.target.value);
   };
-  return <StyledInput value={value} {...rest} onChange={handle} />;
+  return (
+    <StyledInput data-code={code} value={value} {...rest} onChange={handle} />
+  );
 };
 
 export default Input;
