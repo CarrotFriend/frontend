@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../../atoms/Button';
 import Text from '../../atoms/Text';
@@ -8,6 +8,7 @@ import selectCategory from './selectCategory';
 
 const CategoryPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { data } = location.state;
   const clickBtn = (e) => {
     let isChecked = false;
@@ -15,16 +16,16 @@ const CategoryPage = () => {
     inputValues.forEach((input) => {
       if (input.checked) isChecked = true;
     });
-    // 체크된 카테고리가 없이 제출 버튼 눌리면 경고 표시
+    e.preventDefault();
     if (!isChecked) {
-      e.preventDefault();
+      // 체크된 카테고리가 없이 제출 버튼 눌리면 경고 표시
       document.querySelector('.alert').style.visibility = 'visible';
     }
     // 선택된 카테고리 제출
     else {
-      e.preventDefault();
-      // 여기서 select 보내고 처리하는 부분 할 차례
+      // 카테고리 선택해 user의 categoryList 갱신하고 홈으로
       selectCategory(inputValues);
+      navigate('/');
     }
   };
   return (

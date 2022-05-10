@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const selectCategory = async (_inputValues) => {
+  // 유사 배열 객체를 얕게 복사해 새로 배열로 만듦
   const inputValues = Array.from(_inputValues);
   const { id, userId, nickName, categoryList } = JSON.parse(
     localStorage.getItem('user')
