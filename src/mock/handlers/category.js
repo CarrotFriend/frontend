@@ -31,6 +31,14 @@ export default rest.get('/category', (req, res, ctx) => {
           code: '6',
           name: '맛집 탐방',
         },
+        {
+          code: '7',
+          name: '게임',
+        },
+        {
+          code: '8',
+          name: '운동',
+        },
       ],
     })
   );

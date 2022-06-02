@@ -21,7 +21,6 @@ const selectCategory = async (_inputValues) => {
     method: 'post',
     url: '/user/category',
     header: {
-      accept: '*/*',
       Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
       'Content-Type': 'application/json',
     },

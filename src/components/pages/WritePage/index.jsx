@@ -3,7 +3,7 @@ import Button from '../../atoms/Button';
 import Label from '../../atoms/Label';
 import Input from '../../atoms/Input';
 import styled, { css } from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import Textarea from '../../atoms/Textarea';
 
 const commonTextAttribue = {
@@ -77,11 +77,11 @@ const StyledSelect = styled.select`
 const StyledImageInput = styled.input`
   display: none;
 `;
-const StyledTextArea = styled.textarea`
-  ${commonBorderStyle}
-  height: 10rem;
-  resize: none;
-`;
+// const StyledTextArea = styled.textarea`
+//   ${commonBorderStyle}
+//   height: 10rem;
+//   resize: none;
+// `;
 
 const DiffentInputList = styled.div`
   display: flex;
@@ -102,10 +102,10 @@ const StyledWritePage = styled.div`
 `;
 
 const WritePage = () => {
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate('/detail');
-  };
+  // const navigate = useNavigate();
+  // const handleClick = () => {
+  //   navigate('/detail');
+  // };
   const selectFile = (e) => {
     const imageContent = document.querySelector('.image-content');
     const url = URL.createObjectURL(e.target.files[0]);
@@ -114,6 +114,7 @@ const WritePage = () => {
       return;
     }
     console.log(e.target.files[0]);
+    // blob 포함한 url을 서버로 전송
     console.log(url);
     const img = document.createElement('img');
     img.setAttribute('src', url);
@@ -130,7 +131,7 @@ const WritePage = () => {
           <StyledHr />
           <StyledSelect {...data.category}>
             {data.option.map((option, idx) => {
-              const value = idx == 0 ? '' : option;
+              const value = idx === 0 ? '' : option;
               return (
                 <option key={option} value={value}>
                   {option}

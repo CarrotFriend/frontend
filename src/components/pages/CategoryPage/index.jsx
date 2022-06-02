@@ -4,13 +4,14 @@ import styled from 'styled-components';
 import Button from '../../atoms/Button';
 import Text from '../../atoms/Text';
 import InputLabelList from '../../organisms/InputLabelList';
+import getBoardData from './getBoardData';
 import selectCategory from './selectCategory';
 
 const CategoryPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { data } = location.state;
-  const clickBtn = (e) => {
+  const clickBtn = async (e) => {
     let isChecked = false;
     const inputValues = document.querySelectorAll('input');
     inputValues.forEach((input) => {
@@ -23,8 +24,11 @@ const CategoryPage = () => {
     }
     // 선택된 카테고리 제출
     else {
-      // 카테고리 선택해 user의 categoryList 갱신하고 홈으로
-      selectCategory(inputValues);
+      // 카테고리 선택해 user의 categoryList 갱신
+      await selectCategory(inputValues);
+      console.log('why...');
+      // user의 categoryList에 맞는 게시글 데이터를 가져옴
+      await getBoardData();
       navigate('/');
     }
   };
