@@ -4,6 +4,7 @@ import Text from '../../atoms/Text';
 import InputLabelList from '../../organisms/InputLabelList';
 import ButtonList from '../../organisms/ButtonList';
 import styled from 'styled-components';
+import { checkUserId } from './checkUserId';
 import { join } from './join';
 
 const JoinPage = () => {
@@ -37,7 +38,7 @@ const JoinPage = () => {
   // Api 받고 아이디 중복 체크만 확인
   const clickBtn = async (e) => {
     const reg_email =
-      /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+      /^([0-9a-zA-Z_-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
     if (id.trim() === '' || id.trim().length < 4) {
       setAlert('아이디를 최소 4자 이상 입력해주세요.');
       e.preventDefault();
@@ -61,6 +62,7 @@ const JoinPage = () => {
       e.preventDefault();
     } else {
       e.preventDefault();
+      // if (await checkUserId(id)) return;
       const isJoined = await join({ id, pw, username, nickname, email, date });
       if (isJoined) navigate('/login');
     }

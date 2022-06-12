@@ -36,6 +36,7 @@ const handleSrcError = (event) => {
 
 // 나중에 이 컴포넌트 덮어 씌우는 컴포넌트에서 src 검사 다 하고 원래 이미지든 defualtImg든 가져다만 주게 구현 하자
 const Image = ({ src, alt, size }) => {
+  if (src === undefined) src = defaultImg;
   return (
     <StyledImage src={src} alt={alt} size={size} onError={handleSrcError} />
   );

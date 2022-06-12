@@ -4,7 +4,7 @@ export default rest.get('/post/category/*', (req, res, ctx) => {
   if (req.url.pathname.endsWith('6')) {
     return res(
       ctx.status(200),
-      ctx.delay(200),
+      ctx.delay(1000),
       ctx.json({
         state: 200,
         result: 'success',

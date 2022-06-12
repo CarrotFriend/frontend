@@ -15,7 +15,7 @@ const getBoardData = async () => {
       },
     });
     // 이걸 이제 redux에 저장하기
-    console.log(fetchedData);
+    // console.log(fetchedData);
   }
 };
 
