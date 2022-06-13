@@ -42,18 +42,7 @@ const HomePage = () => {
   // 이거로 데이터 로딩 구현하면 됨
   const loading = results.some((result) => result.isLoading);
   if (loading) {
-    return (
-      <>
-        <div>Loading...</div>
-        <div>Loading...</div>
-        <div>Loading...</div>
-        <div>Loading...</div>
-        <div>Loading...</div>
-        <div>Loading...</div>
-        <div>Loading...</div>
-        <div>Loading...</div>
-      </>
-    );
+    return <LoadingBox>로딩 중입니다...</LoadingBox>;
   }
   // const images = [...dummyData.map(({ image, ...rest }, idx) => image)];
   return (
@@ -70,7 +59,6 @@ const HomePage = () => {
             { id: id + 1, text: regDate },
             { id: id + 2, text: tagStr },
           ];
-          console.log(imageList);
           return (
             <ContentList
               key={imageList[0] + idx}
@@ -124,6 +112,12 @@ const HomePage = () => {
     </StyledHomePage>
   );
 };
+
+const LoadingBox = styled.div`
+  margin-top: 40vh;
+  font-size: 3vw;
+  text-align: center;
+`;
 
 const FixedButton = styled.div`
   position: fixed;

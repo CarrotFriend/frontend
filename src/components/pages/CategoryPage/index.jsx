@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Button from '../../atoms/Button';
 import Text from '../../atoms/Text';
 import InputLabelList from '../../organisms/InputLabelList';
-import getBoardData from './getBoardData';
 import selectCategory from './selectCategory';
 
 const CategoryPage = () => {
@@ -26,9 +25,6 @@ const CategoryPage = () => {
     else {
       // 카테고리 선택해 user의 categoryList 갱신
       await selectCategory(inputValues);
-      console.log('why...');
-      // user의 categoryList에 맞는 게시글 데이터를 가져옴
-      await getBoardData();
       navigate('/');
     }
   };
