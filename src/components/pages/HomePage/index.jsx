@@ -6,6 +6,9 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useQueries } from 'react-query';
 import getBoardData from './getBoardData';
+import LoadingBox from '../../organisms/LoadingBox';
+import getTagStr from '../../../util/getTagStr';
+import getWhatTimeBefore from '../../../util/getWhatTimeBefore';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -42,7 +45,7 @@ const HomePage = () => {
   // 이거로 데이터 로딩 구현하면 됨
   const loading = results.some((result) => result.isLoading);
   if (loading) {
-    return <LoadingBox>로딩 중입니다...</LoadingBox>;
+    return <LoadingBox />;
   }
   // const images = [...dummyData.map(({ image, ...rest }, idx) => image)];
   return (
@@ -50,14 +53,10 @@ const HomePage = () => {
       <ContentBox>
         {posts.map(({ imageList, ...rest }, idx) => {
           const { id, title, regDate, tag } = rest;
-          const tagStr = tag.reduce((acc, curr) => {
-            acc += '#' + curr.text + ' ';
-            return acc;
-          }, '');
           const dataList = [
             { id: id, text: title },
-            { id: id + 1, text: regDate },
-            { id: id + 2, text: tagStr },
+            { id: id + 1, text: getWhatTimeBefore(regDate) },
+            { id: id + 2, text: getTagStr(tag) },
           ];
           // navigate('/category', { state: { data: data } });
           return (
@@ -113,12 +112,6 @@ const HomePage = () => {
     </StyledHomePage>
   );
 };
-
-const LoadingBox = styled.div`
-  margin-top: 40vh;
-  font-size: 3vw;
-  text-align: center;
-`;
 
 const FixedButton = styled.div`
   position: fixed;
