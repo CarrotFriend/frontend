@@ -59,10 +59,11 @@ const HomePage = () => {
             { id: id + 1, text: regDate },
             { id: id + 2, text: tagStr },
           ];
+          // navigate('/category', { state: { data: data } });
           return (
             <ContentList
-              key={imageList[0] + idx}
-              onClick={() => navigate('/detail')}
+              key={title + idx}
+              onClick={() => navigate('/detail', { state: { id: id } })}
             >
               <Image src={imageList[0]?.src} alt="content" size="large" />
               <TextList list={dataList} flex="column" />
