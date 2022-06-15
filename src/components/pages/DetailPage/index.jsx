@@ -22,7 +22,6 @@ const DetailPage = () => {
       const {
         data: { data },
       } = await getPostDetail(id);
-      console.log(data);
       setData(data);
     };
     fetchPostDetail();
