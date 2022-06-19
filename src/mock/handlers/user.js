@@ -10,6 +10,7 @@ export default rest.get('/user', (req, res, ctx) => {
         id: 1,
         userId: 'music468',
         nickName: '조조수학',
+        temperature: '36.5',
         categoryList: [],
       },
     })

@@ -1,5 +1,5 @@
 const data = {
-  input: {
+  title: {
     size: 'large',
     onlyBottomline: 'true',
     placeholder: '제목을 입력하세요',
@@ -34,6 +34,12 @@ const data = {
     '게임',
     '운동',
   ],
+  tag: {
+    size: 'large',
+    onlyBottomline: 'true',
+    placeholder: '#태그 입력',
+    name: 'tag',
+  },
 };
 
 export default data;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../../atoms/Button';
 import Label from '../../atoms/Label';
 import Input from '../../atoms/Input';
@@ -8,17 +8,29 @@ import Textarea from '../../atoms/Textarea';
 import data from './data';
 import cameraSvg from './cameraSvg';
 import selectFile from './selectFile';
+import enterSpace from './enterSpace';
+import changeTag from './changeTag';
 
 const WritePage = () => {
   // const navigate = useNavigate();
   // const handleClick = () => {
   //   navigate('/detail');
   // };
+  const [tags, setTags] = useState(['']);
+  const clickBtn = (e) => {
+    e.preventDefault();
+    console.log(tags);
+  };
+  useEffect(() => {
+    console.log(tags);
+    const styledTags = document.querySelector('.styled-tags').childNodes;
+    styledTags[styledTags.length - 1].focus();
+  }, [tags]);
   return (
     <StyledWritePage>
-      <FormBox action="" method="POST">
+      <FormBox>
         <DiffentInputList>
-          <Input {...data.input} />
+          <Input {...data.title} />
           <StyledHr />
           <StyledSelect {...data.category}>
             {data.option.map((option, idx) => {
@@ -48,13 +60,51 @@ const WritePage = () => {
           />
           <Textarea {...data.textarea} />
           <StyledHr />
+          <StyledTags
+            className="styled-tags"
+            onChange={(e) => changeTag({ e, tags, setTags })}
+            onKeyDown={(e) => enterSpace({ e, tags, setTags })}
+          >
+            {tags.map((tag, idx) => {
+              // 마지막 태그 제외하고 readOnly
+              return idx === tags.length - 1 ? (
+                <Input {...data.tag} {...lastTagCustomStyles} key={idx} />
+              ) : (
+                <Input
+                  {...data.tag}
+                  {...commonCustomStyles}
+                  readOnly={true}
+                  key={idx}
+                />
+              );
+            })}
+          </StyledTags>
+          <StyledHr />
         </DiffentInputList>
-        <Button color="pink" size="large">
+        <Button color="pink" size="large" clickBtn={clickBtn}>
           글 올리기
         </Button>
       </FormBox>
     </StyledWritePage>
   );
+};
+
+const commonCustomStyles = {
+  customStyles: [
+    {
+      key: 'padding-right',
+      value: '0',
+    },
+  ],
+};
+const lastTagCustomStyles = {
+  ...commonCustomStyles['customStyles'],
+  customStyles: [
+    {
+      key: 'color',
+      value: 'grey',
+    },
+  ],
 };
 
 const commonBorderStyle = css`
@@ -63,7 +113,7 @@ const commonBorderStyle = css`
     outline: none;
   }
   width: 100%;
-  height: 3rem;
+  height: 2rem;
   font-size: 1.5rem;
   padding-left: 1rem;
 `;
@@ -71,6 +121,11 @@ const commonBorderStyle = css`
 const StyledHr = styled.hr`
   color: #757575;
   margin: 1rem 0;
+`;
+
+const StyledTags = styled.div`
+  display: flex;
+  overflow-x: auto;
 `;
 
 const StyledImage = styled.div`
@@ -109,7 +164,7 @@ const DiffentInputList = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  margin-top: 2rem;
+  margin-top: 1rem;
 `;
 const FormBox = styled.form`
   display: flex;
