@@ -22,8 +22,9 @@ const WritePage = () => {
     console.log(tags);
   };
   useEffect(() => {
-    console.log(tags);
     const styledTags = document.querySelector('.styled-tags').childNodes;
+    if (styledTags[styledTags.length - 1].value === '')
+      styledTags[styledTags.length - 1].style.width = 8 + 'ch';
     styledTags[styledTags.length - 1].focus();
   }, [tags]);
   return (

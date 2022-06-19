@@ -2,11 +2,14 @@ const changeTag = ({ e, tags, setTags }) => {
   // 태그 변경 시 tags 실시간으로 set해주기
   const newTags = tags.filter((_, idx) => idx <= tags.length - 2);
   // console.log(newTags);
-  if (e.target.value.trim() === '') {
+  if (e.target.value.trim() === '' || e.target.value === '#') {
     e.target.value = '';
+    e.target.style.width = 8 + 'ch';
     return;
   }
+
   if (e.target.value[0] !== '#') e.target.value = '#' + e.target.value;
+
   const checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
   const isKor = checkKor.test(e.target.value);
   // 한글은 받침 등을 고려하지 않아 len 더 크게주기
