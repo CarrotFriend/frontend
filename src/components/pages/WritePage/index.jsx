@@ -3,37 +3,63 @@ import Button from '../../atoms/Button';
 import Label from '../../atoms/Label';
 import Input from '../../atoms/Input';
 import styled, { css } from 'styled-components';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Textarea from '../../atoms/Textarea';
 import data from './data';
 import cameraSvg from './cameraSvg';
 import selectFile from './selectFile';
 import enterSpace from './enterSpace';
 import changeTag from './changeTag';
+import registPost from './registPost';
 
 const WritePage = () => {
-  // const navigate = useNavigate();
-  // const handleClick = () => {
-  //   navigate('/detail');
-  // };
+  const navigate = useNavigate();
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
+  const [image, setImage] = useState('');
+  const [content, setContent] = useState('');
   const [tags, setTags] = useState(['']);
-  const clickBtn = (e) => {
+  const [alert, setAlert] = useState('');
+
+  const handleClick = async (e) => {
     e.preventDefault();
-    console.log(tags);
+    if (title.trim() === '') {
+      setAlert('제목을 입력해 주세요.');
+      return;
+    }
+    if (category === '') {
+      setAlert('카테고리를 선택해 주세요.');
+      return;
+    }
+    if (content.trim() === '') {
+      setAlert('내용을 입력해 주세요.');
+      return;
+    }
+    const postId = await registPost({ title, category, image, content, tags });
+    navigate('/detail', { state: { id: postId } });
   };
+
   useEffect(() => {
+    console.log(category);
     const styledTags = document.querySelector('.styled-tags').childNodes;
+    // 기존 태그 지워졌을 때 length 처리
     if (styledTags[styledTags.length - 1].value === '')
       styledTags[styledTags.length - 1].style.width = 8 + 'ch';
+    // 태그에 변동이 있을 때 가장 마지막 태그에 focus 주기
     styledTags[styledTags.length - 1].focus();
   }, [tags]);
+
   return (
     <StyledWritePage>
       <FormBox>
         <DiffentInputList>
-          <Input {...data.title} />
+          <Input {...data.title} value={title} setValue={setTitle} />
           <StyledHr />
-          <StyledSelect {...data.category}>
+          <StyledSelect
+            {...data.category}
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
             {data.option.map((option, idx) => {
               const value = idx === 0 ? '' : option;
               return (
@@ -57,16 +83,16 @@ const WritePage = () => {
             type="file"
             id="imgInput"
             accept="image/*"
-            onChange={selectFile}
+            onChange={(e) => selectFile({ e, setImage })}
           />
-          <Textarea {...data.textarea} />
+          <Textarea {...data.textarea} value={content} setValue={setContent} />
           <StyledHr />
           <StyledTags
             className="styled-tags"
             onChange={(e) => changeTag({ e, tags, setTags })}
             onKeyDown={(e) => enterSpace({ e, tags, setTags })}
           >
-            {tags.map((tag, idx) => {
+            {tags.map((_, idx) => {
               // 마지막 태그 제외하고 readOnly
               return idx === tags.length - 1 ? (
                 <Input {...data.tag} {...lastTagCustomStyles} key={idx} />
@@ -82,7 +108,8 @@ const WritePage = () => {
           </StyledTags>
           <StyledHr />
         </DiffentInputList>
-        <Button color="pink" size="large" clickBtn={clickBtn}>
+        <Alert>{alert}</Alert>
+        <Button color="pink" size="large" clickBtn={handleClick}>
           글 올리기
         </Button>
       </FormBox>
@@ -117,6 +144,10 @@ const commonBorderStyle = css`
   height: 2rem;
   font-size: 1.5rem;
   padding-left: 1rem;
+`;
+
+const Alert = styled.div`
+  color: red;
 `;
 
 const StyledHr = styled.hr`

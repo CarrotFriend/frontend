@@ -36,8 +36,11 @@ const StyledTextarea = styled.textarea`
   ${fontSize}
 `;
 
-const Textarea = ({ ...rest }) => {
-  return <StyledTextarea {...rest} />;
+const Textarea = ({ value, setValue, ...rest }) => {
+  const handle = (e) => {
+    setValue && setValue(e.target.value);
+  };
+  return <StyledTextarea {...rest} onChange={handle} />;
 };
 
 export default Textarea;

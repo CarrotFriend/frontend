@@ -7,11 +7,12 @@ const enterSpace = ({ e, tags, setTags }) => {
     newTags.push('');
     setTags(newTags);
     const parent = e.target.parentNode.childNodes;
-    parent[parent.length - 2].value = '';
+    if (parent.length >= 2) parent[parent.length - 2].value = '';
   }
   // space
   if (e.key === ' ') {
-    if (e.target.value.trim() === '') return;
+    const val = e.target.value;
+    if (val.trim() === '' || val.trim() === '#') return;
     setTags([...tags, '']);
   }
 };

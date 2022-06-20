@@ -1,13 +1,12 @@
-const selectFile = (e) => {
+const selectFile = ({ e, setImage }) => {
   const imageContent = document.querySelector('.image-content');
   const url = URL.createObjectURL(e.target.files[0]);
+  // 이미 올라온 사진이 있으면 삭제
   if (imageContent.hasChildNodes()) {
-    imageContent.childNodes[0].src = url;
-    return;
+    imageContent.childNodes[0].remove();
   }
-  console.log(e.target.files[0]);
-  // blob 포함한 url을 서버로 전송
-  console.log(url);
+  // blob 포함한 url을 set
+  setImage(url);
   const img = document.createElement('img');
   img.setAttribute('src', url);
   img.setAttribute('alt', 'default');
