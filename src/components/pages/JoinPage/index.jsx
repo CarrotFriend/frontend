@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Text from '../../atoms/Text';
 import InputLabelList from '../../organisms/InputLabelList';
 import ButtonList from '../../organisms/ButtonList';
 import styled from 'styled-components';
-import { checkUserId } from './checkUserId';
+import { verify } from './verify';
 import { join } from './join';
 
 const JoinPage = () => {
-  const [id, setId] = useState('');
+  const [userId, setUserId] = useState('');
   const [pw, setPw] = useState('');
   const [pwcheck, setPwcheck] = useState('');
   const [username, setUsername] = useState('');
@@ -19,7 +19,7 @@ const JoinPage = () => {
   const navigate = useNavigate();
 
   const stateList = [
-    [id, setId],
+    [userId, setUserId],
     [pw, setPw],
     [pwcheck, setPwcheck],
     [username, setUsername],
@@ -39,7 +39,7 @@ const JoinPage = () => {
   const clickBtn = async (e) => {
     const reg_email =
       /^([0-9a-zA-Z_-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-    if (id.trim() === '' || id.trim().length < 4) {
+    if (userId.trim() === '' || userId.trim().length < 4) {
       setAlert('아이디를 최소 4자 이상 입력해주세요.');
       e.preventDefault();
     } else if (pw.trim() === '' || pw.trim().length < 4) {
@@ -62,9 +62,17 @@ const JoinPage = () => {
       e.preventDefault();
     } else {
       e.preventDefault();
-      // if (await checkUserId(id)) return;
-      const isJoined = await join({ id, pw, username, nickname, email, date });
+      // if (await checkUserId(userId)) return;
+      const isJoined = await join({
+        userId,
+        pw,
+        username,
+        nickname,
+        email,
+        date,
+      });
       if (isJoined) navigate('/login');
+      else setAlert('서버 연결이 불안정합니다. 잠시 후에 다시 시도해주세요.');
     }
   };
 
@@ -74,6 +82,20 @@ const JoinPage = () => {
       clickBtn: clickBtn,
     },
   ];
+
+  useEffect(() => {
+    const list = document.querySelectorAll('input');
+    for (let ele of list) {
+      if (
+        ele.name === 'userId' ||
+        ele.name === 'nickname' ||
+        ele.name === 'email'
+      )
+        ele.addEventListener('focusout', () =>
+          verify(ele, ele.name, ele.value)
+        );
+    }
+  }, []);
 
   return (
     <PageFrame>
@@ -107,7 +129,7 @@ const data = {
   inputs: [
     {
       type: 'text',
-      name: 'id',
+      name: 'userId',
       ...commonInputAttribute,
     },
     {
@@ -145,7 +167,7 @@ const data = {
     {
       ...commonLabelAttribute,
       child: '아이디',
-      target: 'id',
+      target: 'userId',
     },
     {
       ...commonLabelAttribute,
@@ -217,7 +239,7 @@ const StyledJoinPage = styled.div`
   align-items: center;
   width: 50rem;
   height: 50rem;
-  margin: 5rem;
+  margin: 2rem;
 `;
 
 const PageFrame = styled.div`

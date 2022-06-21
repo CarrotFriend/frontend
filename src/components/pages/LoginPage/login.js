@@ -19,6 +19,7 @@ export const login = async (id, pw, setAlert) => {
     // console.log(new Date(data.data.accessTokenExpireTime));
     return data.state === 200 ? loginSuccess(data.data) : loginFail(setAlert);
   } catch (err) {
+    setAlert('서버와의 연결이 불안정합니다. 잠시후에 다시 시도해주세요.');
     console.log(err);
   }
 };

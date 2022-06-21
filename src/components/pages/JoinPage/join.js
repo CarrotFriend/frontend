@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const join = async ({ id, pw, username, nickname, email, date }) => {
+export const join = async ({ userId, pw, username, nickname, email, date }) => {
   try {
     const { data } = await axios({
       method: 'post',
@@ -10,7 +10,7 @@ export const join = async ({ id, pw, username, nickname, email, date }) => {
         'Content-Type': 'application/json',
       },
       data: {
-        userId: id,
+        userId,
         pw,
         userName: username,
         nickName: nickname,
@@ -22,7 +22,9 @@ export const join = async ({ id, pw, username, nickname, email, date }) => {
       alert('회원가입이 완료되었습니다!');
       return true;
     }
+    return false;
   } catch (err) {
     console.log(err);
+    return false;
   }
 };

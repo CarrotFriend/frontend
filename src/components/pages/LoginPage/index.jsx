@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { login } from './login';
 import user from './user';
 import checkCategoryList from './checkCategoryList';
+import data from './data';
 
 const LoginPage = () => {
   const [id, setId] = useState('');
@@ -69,44 +70,6 @@ const LoginPage = () => {
       </StyledLoginPage>
     </PageFrame>
   );
-};
-
-const data = {
-  loginInputs: [
-    {
-      type: 'text',
-      placeholder: '아이디를 입력해주세요',
-      name: 'id',
-      accept: '',
-      size: 'large',
-      autoFocus: 'autoFocus',
-    },
-    {
-      type: 'password',
-      placeholder: '비밀번호를 입력해주세요',
-      name: 'pw',
-      accept: '',
-      size: 'large',
-      autoFocus: '',
-    },
-  ],
-  btns: [
-    {
-      size: 'large',
-      color: 'pink',
-      child: '로그인',
-    },
-    {
-      size: 'large',
-      color: 'gray',
-      child: '회원가입',
-    },
-  ],
-  title: {
-    text: '당근친구',
-    size: 'large',
-    color: '',
-  },
 };
 
 const AlertInput = styled.div`

@@ -8,7 +8,7 @@ export default rest.get('/user', (req, res, ctx) => {
       state: 200,
       data: {
         id: 1,
-        userId: 'music468',
+        userId: 'abc',
         nickName: '조조수학',
         temperature: '36.5',
         categoryList: [],

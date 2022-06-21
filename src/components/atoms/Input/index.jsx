@@ -24,7 +24,7 @@ const inputSize = css`
     size === 'large' &&
     css`
       width: 50vw;
-      height: 2rem;
+      height: 3rem;
       font-size: 1.5rem;
       padding: 0 1rem;
     `}

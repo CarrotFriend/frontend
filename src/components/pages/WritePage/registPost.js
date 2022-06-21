@@ -34,6 +34,7 @@ export const registPost = async ({ title, category, image, content, tags }) => {
     return postId;
   } catch (err) {
     console.log(err);
+    return -1;
   }
 };
 

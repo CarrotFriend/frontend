@@ -36,11 +36,15 @@ const WritePage = () => {
       return;
     }
     const postId = await registPost({ title, category, image, content, tags });
+    if (postId === -1) {
+      window.alert('에러가 발생했습니다.');
+      navigate('/');
+      return;
+    }
     navigate('/detail', { state: { id: postId } });
   };
 
   useEffect(() => {
-    console.log(category);
     const styledTags = document.querySelector('.styled-tags').childNodes;
     // 기존 태그 지워졌을 때 length 처리
     if (styledTags[styledTags.length - 1].value === '')
@@ -53,7 +57,12 @@ const WritePage = () => {
     <StyledWritePage>
       <FormBox>
         <DiffentInputList>
-          <Input {...data.title} value={title} setValue={setTitle} />
+          <Input
+            {...data.title}
+            {...commonCustomStyles}
+            value={title}
+            setValue={setTitle}
+          />
           <StyledHr />
           <StyledSelect
             {...data.category}
@@ -123,11 +132,15 @@ const commonCustomStyles = {
       key: 'padding-right',
       value: '0',
     },
+    {
+      key: 'height',
+      value: '2rem',
+    },
   ],
 };
 const lastTagCustomStyles = {
-  ...commonCustomStyles['customStyles'],
   customStyles: [
+    ...commonCustomStyles['customStyles'],
     {
       key: 'color',
       value: 'grey',
@@ -157,6 +170,7 @@ const StyledHr = styled.hr`
 
 const StyledTags = styled.div`
   display: flex;
+  height: 2rem;
   overflow-x: auto;
 `;
 
