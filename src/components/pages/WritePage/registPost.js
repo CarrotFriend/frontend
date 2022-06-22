@@ -7,11 +7,7 @@ export const registPost = async ({ title, category, image, content, tags }) => {
       return { text: tag };
     });
   try {
-    const {
-      data: {
-        data: { postId },
-      },
-    } = await axios({
+    const { data } = await axios({
       method: 'post',
       url: '/post',
       header: {
@@ -31,7 +27,9 @@ export const registPost = async ({ title, category, image, content, tags }) => {
         tagList,
       },
     });
-    return postId;
+    if (data.state !== 200) return -1;
+
+    return data.data.postId;
   } catch (err) {
     console.log(err);
     return -1;

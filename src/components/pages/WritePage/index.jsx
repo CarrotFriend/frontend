@@ -36,8 +36,9 @@ const WritePage = () => {
       return;
     }
     const postId = await registPost({ title, category, image, content, tags });
+    // 에러 처리
     if (postId === -1) {
-      window.alert('에러가 발생했습니다.');
+      window.alert('서버 연결이 불안정합니다. 잠시 후에 다시 시도해주세요.');
       navigate('/');
       return;
     }

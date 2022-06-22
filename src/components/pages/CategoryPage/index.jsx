@@ -24,8 +24,9 @@ const CategoryPage = () => {
     // 선택된 카테고리 제출
     else {
       // 카테고리 선택해 user의 categoryList 갱신
-      await selectCategory(inputValues);
-      navigate('/');
+      if (await selectCategory(inputValues)) navigate('/');
+      else
+        window.alert('서버 연결이 불안정합니다. 잠시 후에 다시 시도해주세요.');
     }
   };
   return (

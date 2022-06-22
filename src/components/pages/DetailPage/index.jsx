@@ -19,10 +19,14 @@ const DetailPage = () => {
   const [data, setData] = useState('');
   useEffect(() => {
     const fetchPostDetail = async () => {
-      const {
-        data: { data },
-      } = await getPostDetail(id);
-      setData(data);
+      const { data } = await getPostDetail(id);
+      // 에러 처리
+      if (!data) {
+        window.alert('서버 연결이 불안정합니다. 잠시 후에 다시 시도해주세요.');
+        navigate('/');
+        return;
+      }
+      setData(data.data);
     };
     fetchPostDetail();
   }, []);

@@ -16,32 +16,41 @@ const selectCategory = async (_inputValues) => {
     }
     return result;
   }, []);
-
-  await axios({
-    method: 'post',
-    url: '/user/category',
-    header: {
-      Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
-      'Content-Type': 'application/json',
-    },
-    data: {
-      userDto: {
-        id,
-        userId,
-        nickName,
-        categoryList,
+  try {
+    const {
+      data: { state },
+    } = await axios({
+      method: 'post',
+      url: '/user/category',
+      header: {
+        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+        'Content-Type': 'application/json',
       },
-      categoryDto,
-    },
-  });
-  const myCategoryList = [...categoryList, ...categoryDto];
-  const newUser = {
-    categoryList: myCategoryList,
-    id,
-    userId,
-    nickName,
-  };
-  localStorage.setItem('user', JSON.stringify(newUser));
+      data: {
+        userDto: {
+          id,
+          userId,
+          nickName,
+          categoryList,
+        },
+        categoryDto,
+      },
+    });
+
+    if (state !== 200) return false;
+    const myCategoryList = [...categoryList, ...categoryDto];
+    const newUser = {
+      categoryList: myCategoryList,
+      id,
+      userId,
+      nickName,
+    };
+    localStorage.setItem('user', JSON.stringify(newUser));
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
 };
 
 export default selectCategory;

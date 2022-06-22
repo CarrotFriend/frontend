@@ -6,6 +6,10 @@ export default rest.post('/user/category', (req, res, ctx) => {
     ctx.delay(200),
     ctx.json({
       state: 200,
+      result: 'success',
+      message: null,
+      data: {},
+      error: [],
     })
   );
 });

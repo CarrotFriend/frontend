@@ -18,17 +18,21 @@ const HomePage = () => {
       return {
         queryKey: ['categoryList', code],
         queryFn: () => getBoardData(code),
-        // config: {
-        // retry: 0,
-        // enabled: true,
-        //   refetchOnWindowFocus: false,
-        // },
         retry: 0,
         enabled: true,
         refetchOnWindowFocus: false,
       };
     })
   );
+
+  // 에러 처리
+  results.forEach(({ isError }) => {
+    if (isError) {
+      window.alert('서버 연결이 불안정합니다. 잠시 후에 다시 시도해주세요.');
+      navigate('/login');
+      return;
+    }
+  });
 
   // results를 하나의 posts 배열 안에 넣기
   const posts = results.reduce((acc, { data }) => {
