@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import customStyles from '../../../util/customStyles';
 
 const onlyBottomline = css`
   ${({ onlyBottomline }) =>
@@ -15,7 +16,7 @@ const inputSize = css`
   ${({ size }) =>
     size === 'medium' &&
     css`
-      width: 25rem;
+      width: 25vw;
       height: 2.5rem;
       font-size: 1.25rem;
       padding-left: 0.7rem;
@@ -23,7 +24,7 @@ const inputSize = css`
   ${({ size }) =>
     size === 'large' &&
     css`
-      width: 50vw;
+      width: 30vw;
       height: 3rem;
       font-size: 1.5rem;
       padding: 0 1rem;
@@ -36,26 +37,14 @@ const inputSize = css`
       margin-right: 0.5rem;
     `}
 `;
-const _customStyles = css`
-  ${({ customStyles }) =>
-    // custom할 Style의 배열을 받아 reduce 함수로 하나의 css 문자열로 만듦
-    customStyles &&
-    customStyles.reduce((acc, { key, value }) => {
-      return (
-        acc +
-        `
-          ${key}: ${value};
-        `
-      );
-    }, css``)}
-`;
+
 const StyledInput = styled.input`
   height: 2rem;
   font-size: 0.75rem;
   padding-left: 0.5rem;
   ${inputSize}
   ${onlyBottomline}
-  ${_customStyles}
+  ${customStyles}
 `;
 
 const Input = ({ value, setValue, code, ...rest }) => {

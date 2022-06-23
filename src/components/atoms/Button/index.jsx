@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { darken, lighten } from 'polished';
+import customStyles from '../../../util/customStyles';
 
 const colorStyle = css`
   ${({ theme, color }) => {
@@ -67,6 +68,8 @@ const StyledButton = styled.button`
 
   /* 색상 */
   ${colorStyle}
+
+  ${customStyles}
 `;
 
 const Button = ({ children, clickBtn, ...rest }) => {
