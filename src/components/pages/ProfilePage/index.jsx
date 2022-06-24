@@ -7,6 +7,7 @@ import reselectCategory from './reselectCategory';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
+
   const list1 = [
     {
       ...data[0][0],

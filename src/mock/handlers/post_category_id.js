@@ -11,8 +11,8 @@ export default rest.get('/post/category/*', (req, res, ctx) => {
         message: null,
         data: [
           {
-            id: 3,
-            userId: 'aaa',
+            postId: 3,
+            userId: 1,
             title: '모각코 모집',
             imageList: [
               {
@@ -33,8 +33,8 @@ export default rest.get('/post/category/*', (req, res, ctx) => {
             ],
           },
           {
-            id: 35,
-            userId: 'ddd',
+            postId: 35,
+            userId: 2,
             title: '싸피 면접 스터디',
             imageList: [
               {
@@ -71,8 +71,8 @@ export default rest.get('/post/category/*', (req, res, ctx) => {
         message: null,
         data: [
           {
-            id: 41,
-            userId: 'z4z',
+            postId: 41,
+            userId: 3,
             title: '내일 부산 같이 다니실 분',
             imageList: [],
             content:
@@ -92,8 +92,8 @@ export default rest.get('/post/category/*', (req, res, ctx) => {
             ],
           },
           {
-            id: 36,
-            userId: 'd2d',
+            postId: 36,
+            userId: 4,
             title: '고성 여행',
             imageList: [],
             content:
@@ -129,8 +129,8 @@ export default rest.get('/post/category/*', (req, res, ctx) => {
         message: null,
         data: [
           {
-            id: 1,
-            userId: 'abc',
+            postId: 1,
+            userId: 1,
             title: '봉명동 저녁 드실분',
             imageList: [
               {
@@ -157,8 +157,8 @@ export default rest.get('/post/category/*', (req, res, ctx) => {
             ],
           },
           {
-            id: 13,
-            userId: 'zws',
+            postId: 13,
+            userId: 2,
             title: '한밭대 근처 저녁 같이 드실 분',
             imageList: [
               {
@@ -182,8 +182,8 @@ export default rest.get('/post/category/*', (req, res, ctx) => {
             ],
           },
           {
-            id: 11,
-            userId: 'abs',
+            postId: 11,
+            userId: 5,
             title: '논산 딸기 드시러 가실분 카풀',
             imageList: [
               {
@@ -223,8 +223,8 @@ export default rest.get('/post/category/*', (req, res, ctx) => {
         message: null,
         data: [
           {
-            id: 4,
-            userId: 'bbb',
+            postId: 4,
+            userId: 6,
             title: '롤 동료 모집',
             imageList: [],
             content: '대충 롤 동료 구하는 글',
@@ -259,8 +259,8 @@ export default rest.get('/post/category/*', (req, res, ctx) => {
         message: null,
         data: [
           {
-            id: 2,
-            userId: 'def',
+            postId: 2,
+            userId: 7,
             title: '자전거 엑스포!',
             imageList: [],
             content:
@@ -283,8 +283,8 @@ export default rest.get('/post/category/*', (req, res, ctx) => {
             ],
           },
           {
-            id: 29,
-            userId: 'abc',
+            postId: 29,
+            userId: 1,
             title: '충남대 농구',
             imageList: [],
             content:

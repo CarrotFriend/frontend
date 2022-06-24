@@ -56,17 +56,17 @@ const HomePage = () => {
     <StyledHomePage>
       <ContentBox>
         {posts.map(({ imageList, ...rest }, idx) => {
-          const { id, title, regDate, tag } = rest;
+          const { postId, title, regDate, tag } = rest;
           const dataList = [
-            { id: id, text: title },
-            { id: id + 1, text: getWhatTimeBefore(regDate) },
-            { id: id + 2, text: getTagStr(tag) },
+            { id: postId, text: title },
+            { id: postId + 1, text: getWhatTimeBefore(regDate) },
+            { id: postId + 2, text: getTagStr(tag) },
           ];
           // navigate('/category', { state: { data: data } });
           return (
             <ContentList
               key={title + idx}
-              onClick={() => navigate('/detail', { state: { id: id } })}
+              onClick={() => navigate('/detail', { state: { postId } })}
             >
               <Image src={imageList[0]?.src} alt="content" size="large" />
               <TextList list={dataList} flex="column" />

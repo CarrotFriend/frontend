@@ -1,21 +1,21 @@
 import axios from 'axios';
 
-const getPostDetail = async (id) => {
+const getPostDetail = async (postId) => {
   try {
     const fetchedData = await axios({
       method: 'get',
-      url: `/post/detail/${id}`,
+      url: `/post/detail/${postId}`,
       header: {
         accept: '*/*',
         Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
       },
     });
-    if (fetchedData.data.state !== 200) return { data: false };
+    if (fetchedData.data.state !== 200)
+      throw new Error('Error in Fetching data!');
 
     return fetchedData;
   } catch (error) {
-    console.log(error);
-    return { data: false };
+    throw error;
   }
 };
 

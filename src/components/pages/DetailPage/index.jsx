@@ -13,13 +13,13 @@ import getWhatTimeBefore from '../../../util/getWhatTimeBefore';
 const DetailPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { id } = location.state;
+  const { postId } = location.state;
 
   // useEffect로 추후 데이터만 다시 렌더링
   const [data, setData] = useState('');
   useEffect(() => {
     const fetchPostDetail = async () => {
-      const { data } = await getPostDetail(id);
+      const { data } = await getPostDetail(postId);
       // 에러 처리
       if (!data) {
         window.alert('서버 연결이 불안정합니다. 잠시 후에 다시 시도해주세요.');

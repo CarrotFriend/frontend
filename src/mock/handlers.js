@@ -7,6 +7,7 @@ import post_category_id from './handlers/post_category_id';
 import post_detail from './handlers/post_detail';
 import post from './handlers/post';
 import verify from './handlers/verify';
+import post_mypost from './handlers/post_mypost';
 
 const handlers = [
   authLogin,
@@ -18,6 +19,7 @@ const handlers = [
   post_detail,
   post,
   verify,
+  post_mypost,
 ];
 
 export default handlers;
