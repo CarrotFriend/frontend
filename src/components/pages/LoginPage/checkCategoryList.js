@@ -10,7 +10,12 @@ const checkCategoryList = async (navigate) => {
       navigate('/login');
       return;
     }
-    await navigate('/category', { state: { data: data } });
+    await navigate('/category', {
+      state: {
+        data: data,
+        categoryList: [],
+      },
+    });
   } else navigate('/');
 };
 

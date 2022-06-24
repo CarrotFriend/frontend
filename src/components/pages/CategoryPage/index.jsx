@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../../atoms/Button';
@@ -9,7 +9,8 @@ import selectCategory from './selectCategory';
 const CategoryPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { data } = location.state;
+  const { data, categoryList } = location.state;
+
   const clickBtn = async (e) => {
     let isChecked = false;
     const inputValues = document.querySelectorAll('input');
@@ -29,6 +30,18 @@ const CategoryPage = () => {
         window.alert('서버 연결이 불안정합니다. 잠시 후에 다시 시도해주세요.');
     }
   };
+
+  useEffect(() => {
+    if (categoryList.length > 0) return;
+
+    const list = categoryList.map((ele) => ele.code);
+
+    const inputValues = document.querySelectorAll('input');
+    inputValues.forEach((input) => {
+      if (list.includes(input.dataset.code)) input.checked = true;
+    });
+  }, []);
+
   return (
     <StyledCategoryPage>
       <TitleArea>

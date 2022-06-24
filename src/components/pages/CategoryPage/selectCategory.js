@@ -38,9 +38,9 @@ const selectCategory = async (_inputValues) => {
     });
 
     if (state !== 200) return false;
-    const myCategoryList = [...categoryList, ...categoryDto];
+
     const newUser = {
-      categoryList: myCategoryList,
+      categoryList: categoryDto,
       id,
       userId,
       nickName,

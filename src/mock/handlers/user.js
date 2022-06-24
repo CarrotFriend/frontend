@@ -6,13 +6,19 @@ export default rest.get('/user', (req, res, ctx) => {
     ctx.delay(200),
     ctx.json({
       state: 200,
+      result: 'success',
+      message: null,
       data: {
         id: 1,
         userId: 'abc',
         nickName: '조조수학',
+        email: 'pch468@naver.com',
+        regDate: '2022-03-05 10:34:19',
         temperature: '36.5',
+        birthday: '1995-08-28',
         categoryList: [],
       },
+      error: [],
     })
   );
 });
