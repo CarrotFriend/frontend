@@ -1,6 +1,10 @@
 import axios from 'axios';
 
 export const verify = async (ele, identifier, val) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  // input에 적혀진 value가 현재 저장되어 있는 값이면 중복체크 하지 않음
+  if (user?.[identifier] === val) return;
+
   try {
     const {
       data: {
@@ -14,6 +18,7 @@ export const verify = async (ele, identifier, val) => {
         Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
       },
     });
+    console.log(code);
     const label =
       identifier === 'userId'
         ? '아이디'

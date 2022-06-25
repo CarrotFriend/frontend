@@ -11,6 +11,7 @@ export default rest.get('/user', (req, res, ctx) => {
       data: {
         id: 1,
         userId: 'abc',
+        userName: '김성훈',
         nickName: '조조수학',
         email: 'pch468@naver.com',
         regDate: '2022-03-05 10:34:19',

@@ -3,11 +3,9 @@ import axios from 'axios';
 const selectCategory = async (_inputValues) => {
   // 유사 배열 객체를 얕게 복사해 새로 배열로 만듦
   const inputValues = Array.from(_inputValues);
-  const { id, userId, nickName, categoryList } = JSON.parse(
-    localStorage.getItem('user')
-  );
+  const user = JSON.parse(localStorage.getItem('user'));
   // check된 input만 배열에 담기
-  const categoryDto = inputValues.reduce((result, input) => {
+  const categoryList = inputValues.reduce((result, input) => {
     if (input.checked) {
       result.push({
         code: input.dataset.code,
@@ -27,23 +25,18 @@ const selectCategory = async (_inputValues) => {
         'Content-Type': 'application/json',
       },
       data: {
-        userDto: {
-          id,
-          userId,
-          nickName,
+        userCateDto: {
+          id: user.id,
           categoryList,
         },
-        categoryDto,
       },
     });
 
     if (state !== 200) return false;
 
     const newUser = {
-      categoryList: categoryDto,
-      id,
-      userId,
-      nickName,
+      ...user,
+      categoryList,
     };
     localStorage.setItem('user', JSON.stringify(newUser));
     return true;

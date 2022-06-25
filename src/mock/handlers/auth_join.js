@@ -6,6 +6,10 @@ export default rest.post('/auth/join', (req, res, ctx) => {
     ctx.delay(500),
     ctx.json({
       state: 200,
+      result: 'success',
+      message: null,
+      data: {},
+      error: [],
     })
   );
 });

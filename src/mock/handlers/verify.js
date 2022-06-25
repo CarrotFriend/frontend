@@ -18,7 +18,7 @@ export default rest.get('/verify/*', (req, res, ctx) => {
       })
     );
   }
-  if (pathArr[2] === 'nickname' && pathArr[3] === '조조수학') {
+  if (pathArr[2] === 'nickName' && pathArr[3] === '조조수학') {
     console.log(pathArr[2]);
     return res(
       ctx.status(200),

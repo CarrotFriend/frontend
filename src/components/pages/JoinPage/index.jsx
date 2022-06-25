@@ -6,13 +6,14 @@ import ButtonList from '../../organisms/ButtonList';
 import styled from 'styled-components';
 import { verify } from './verify';
 import { join } from './join';
+import data from './data';
 
 const JoinPage = () => {
   const [userId, setUserId] = useState('');
   const [pw, setPw] = useState('');
   const [pwcheck, setPwcheck] = useState('');
-  const [username, setUsername] = useState('');
-  const [nickname, setNickname] = useState('');
+  const [userName, setuserName] = useState('');
+  const [nickName, setnickName] = useState('');
   const [email, setEmail] = useState('');
   const [date, setDate] = useState('');
   const [alert, setAlert] = useState('');
@@ -22,8 +23,8 @@ const JoinPage = () => {
     [userId, setUserId],
     [pw, setPw],
     [pwcheck, setPwcheck],
-    [username, setUsername],
-    [nickname, setNickname],
+    [userName, setuserName],
+    [nickName, setnickName],
     [email, setEmail],
     [date, setDate],
   ];
@@ -37,37 +38,30 @@ const JoinPage = () => {
 
   // Api 받고 아이디 중복 체크만 확인
   const clickBtn = async (e) => {
+    e.preventDefault();
     const reg_email =
       /^([0-9a-zA-Z_-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
     if (userId.trim() === '' || userId.trim().length < 4) {
       setAlert('아이디를 최소 4자 이상 입력해주세요.');
-      e.preventDefault();
     } else if (pw.trim() === '' || pw.trim().length < 4) {
       setAlert('비밀번호를 최소 4자 이상 입력해주세요.');
-      e.preventDefault();
     } else if (pw.trim() !== pwcheck.trim()) {
       setAlert('비밀번호가 일치하지 않습니다.');
-      e.preventDefault();
-    } else if (username.trim() === '' || username.length < 2) {
+    } else if (userName.trim() === '' || userName.length < 2) {
       setAlert('이름을 최소 1자 이상 입력해주세요.');
-      e.preventDefault();
-    } else if (nickname.trim() === '' || nickname.length < 2) {
+    } else if (nickName.trim() === '' || nickName.length < 2) {
       setAlert('닉네임을 최소 1자 이상 입력해주세요.');
-      e.preventDefault();
     } else if (!reg_email.test(email)) {
       setAlert('이메일 양식을 올바르게 입력해주세요.');
-      e.preventDefault();
     } else if (date.trim() === '') {
       setAlert('생년월일을 선택해주세요.');
-      e.preventDefault();
     } else {
-      e.preventDefault();
       // if (await checkUserId(userId)) return;
       const isJoined = await join({
         userId,
         pw,
-        username,
-        nickname,
+        userName,
+        nickName,
         email,
         date,
       });
@@ -75,7 +69,6 @@ const JoinPage = () => {
       else setAlert('서버 연결이 불안정합니다. 잠시 후에 다시 시도해주세요.');
     }
   };
-
   const btns = [
     {
       ...data.btns[0],
@@ -88,13 +81,27 @@ const JoinPage = () => {
     for (let ele of list) {
       if (
         ele.name === 'userId' ||
-        ele.name === 'nickname' ||
+        ele.name === 'nickName' ||
         ele.name === 'email'
-      )
+      ) {
         ele.addEventListener('focusout', () =>
           verify(ele, ele.name, ele.value)
         );
+      }
     }
+    return () => {
+      for (let ele of list) {
+        if (
+          ele.name === 'userId' ||
+          ele.name === 'nickName' ||
+          ele.name === 'email'
+        ) {
+          ele.addEventListener('focusout', () =>
+            verify(ele, ele.name, ele.value)
+          );
+        }
+      }
+    };
   }, []);
 
   return (
@@ -110,108 +117,10 @@ const JoinPage = () => {
           />
           <Alert>{alert}</Alert>
           <ButtonList list={btns} flex="column" />
-          {/* <button onClick={join}>ddd</button> */}
         </JoinFormBox>
       </StyledJoinPage>
     </PageFrame>
   );
-};
-
-const commonInputAttribute = {
-  size: 'small',
-};
-const commonLabelAttribute = {
-  size: 'medium',
-  color: 'gray',
-};
-
-const data = {
-  inputs: [
-    {
-      type: 'text',
-      name: 'userId',
-      ...commonInputAttribute,
-    },
-    {
-      type: 'password',
-      name: 'pw',
-      ...commonInputAttribute,
-    },
-    {
-      type: 'password',
-      name: 'pwcheck',
-      ...commonInputAttribute,
-    },
-    {
-      type: 'text',
-      name: 'username',
-      ...commonInputAttribute,
-    },
-    {
-      type: 'text',
-      name: 'nickname',
-      ...commonInputAttribute,
-    },
-    {
-      type: 'email',
-      name: 'email',
-      ...commonInputAttribute,
-    },
-    {
-      type: 'date',
-      name: 'date',
-      ...commonInputAttribute,
-    },
-  ],
-  labels: [
-    {
-      ...commonLabelAttribute,
-      child: '아이디',
-      target: 'userId',
-    },
-    {
-      ...commonLabelAttribute,
-      child: '비밀번호',
-      target: 'pw',
-    },
-    {
-      ...commonLabelAttribute,
-      child: '비밀번호 재확인',
-      target: 'pwcheck',
-    },
-    {
-      ...commonLabelAttribute,
-      child: '이름',
-      target: 'username',
-    },
-    {
-      ...commonLabelAttribute,
-      child: '닉네임',
-      target: 'nickname',
-    },
-    {
-      ...commonLabelAttribute,
-      child: '이메일',
-      target: 'email',
-    },
-    {
-      ...commonLabelAttribute,
-      child: '생년월일',
-      target: 'date',
-    },
-  ],
-  btns: [
-    {
-      size: 'large',
-      color: 'pink',
-      child: '회원가입',
-    },
-  ],
-  title: {
-    text: '당근친구',
-    size: 'large',
-    color: '',
-  },
 };
 
 const InputLableListFlex = {

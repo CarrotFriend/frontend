@@ -37,7 +37,6 @@ const MypostPage = () => {
     if (a.regDate > b.regDate) return -1;
     return 0;
   });
-  console.log(posts);
 
   return (
     <StyledMypostPage>
@@ -85,7 +84,7 @@ const ContentBox = styled.div`
 const HeaderBox = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin: 2rem 0 1rem 0;
 `;
 
 const StyledMypostPage = styled.div`

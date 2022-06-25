@@ -1,10 +1,18 @@
 import axios from 'axios';
 
-export const join = async ({ userId, pw, userName, nickName, email, date }) => {
+export const modifyMyInfo = async ({
+  userId,
+  pw,
+  userName,
+  nickName,
+  email,
+  date,
+}) => {
+  const { categoryList } = JSON.parse(localStorage.getItem('user'));
   try {
     const { data } = await axios({
-      method: 'post',
-      url: '/auth/join',
+      method: 'put',
+      url: '/user',
       header: {
         accept: '*/*',
         'Content-Type': 'application/json',
@@ -16,10 +24,16 @@ export const join = async ({ userId, pw, userName, nickName, email, date }) => {
         nickName,
         email,
         birthday: date,
+        image: {
+          imageId: -1,
+          src: null,
+        },
+        categoryList,
       },
     });
+    localStorage.setItem('user', JSON.stringify(data.data));
     if (data.state === 200) {
-      alert('회원가입이 완료되었습니다!');
+      alert('회원 정보가 수정되었습니다!');
       return true;
     }
     return false;
