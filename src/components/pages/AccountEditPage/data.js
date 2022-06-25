@@ -7,6 +7,20 @@ const commonLabelAttribute = {
 };
 const readOnly = {
   readOnly: true,
+  customStyles: [
+    {
+      key: 'background-color',
+      value: 'gray',
+    },
+    {
+      key: 'border-radius',
+      value: '2px',
+    },
+    {
+      key: 'border',
+      value: '1px solid gray',
+    },
+  ],
 };
 
 const data = {
@@ -30,6 +44,7 @@ const data = {
     {
       type: 'text',
       name: 'userName',
+      ...readOnly,
       ...commonInputAttribute,
     },
     {
@@ -46,6 +61,7 @@ const data = {
     {
       type: 'date',
       name: 'date',
+      ...readOnly,
       ...commonInputAttribute,
     },
   ],

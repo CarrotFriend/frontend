@@ -11,9 +11,7 @@ import { modifyMyInfo } from './modifyMyInfo';
 const AccountEditPage = () => {
   const [pw, setPw] = useState('');
   const [pwcheck, setPwcheck] = useState('');
-  const [userName, setuserName] = useState('');
   const [nickName, setnickName] = useState('');
-  const [date, setDate] = useState('');
   const [alert, setAlert] = useState('');
   const navigate = useNavigate();
 
@@ -22,11 +20,13 @@ const AccountEditPage = () => {
     [],
     [pw, setPw],
     [pwcheck, setPwcheck],
-    [userName, setuserName],
-    [nickName, setnickName],
+    // [userName, setuserName],
     [],
+    [nickName, setnickName],
     // [email, setEmail],
-    [date, setDate],
+    [],
+    // [date, setDate],
+    [],
   ];
   const inputs = stateList.map(([value, setValue], idx) => {
     return {
@@ -42,14 +42,12 @@ const AccountEditPage = () => {
       setAlert('비밀번호를 최소 4자 이상 입력해주세요.');
     } else if (pw.trim() !== pwcheck.trim()) {
       setAlert('비밀번호가 일치하지 않습니다.');
-    } else if (userName.trim() === '' || userName.length < 2) {
-      setAlert('이름을 최소 1자 이상 입력해주세요.');
     } else if (nickName.trim() === '' || nickName.length < 2) {
       setAlert('닉네임을 최소 1자 이상 입력해주세요.');
-    } else if (date.trim() === '') {
-      setAlert('생년월일을 선택해주세요.');
     } else {
-      const { userId, email } = JSON.parse(localStorage.getItem('user'));
+      const { userId, userName, email, date } = JSON.parse(
+        localStorage.getItem('user')
+      );
 
       const isModified = await modifyMyInfo({
         userId,
@@ -75,9 +73,7 @@ const AccountEditPage = () => {
     const { userId, userName, nickName, email, birthday } = JSON.parse(
       localStorage.getItem('user')
     );
-    setuserName(userName);
     setnickName(nickName);
-    setDate(birthday);
     const list = document.querySelectorAll('input');
     for (let ele of list) {
       if (ele.name === 'nickName') {
@@ -86,7 +82,9 @@ const AccountEditPage = () => {
         );
       }
       if (ele.name === 'userId') ele.value = userId;
+      if (ele.name === 'userName') ele.value = userName;
       if (ele.name === 'email') ele.value = email;
+      if (ele.name === 'date') ele.value = birthday;
     }
     return () => {
       for (let ele of list) {
