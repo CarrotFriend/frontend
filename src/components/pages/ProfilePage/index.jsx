@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ButtonList from '../../organisms/ButtonList';
 import data from './data';
+import logout from './logout';
 import reselectCategory from './reselectCategory';
 
 const ProfilePage = () => {
@@ -25,7 +26,7 @@ const ProfilePage = () => {
   const list2 = [
     {
       ...data[1][0],
-      clickBtn: () => navigate('/'),
+      clickBtn: () => logout(navigate),
     },
     {
       ...data[1][1],

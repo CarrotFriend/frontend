@@ -1,8 +1,9 @@
-import authLogin from './handlers/auth_login';
-import authJoin from './handlers/auth_join';
+import auth_login from './handlers/auth_login';
+import auth_join from './handlers/auth_join';
+import auth_logout from './handlers/auth_logout';
 import user from './handlers/user';
 import category from './handlers/category';
-import userCategory from './handlers/user_category';
+import user_category from './handlers/user_category';
 import post_category_id from './handlers/post_category_id';
 import post_detail from './handlers/post_detail';
 import post from './handlers/post';
@@ -11,11 +12,12 @@ import post_mypost from './handlers/post_mypost';
 import user_put from './handlers/user_put';
 
 const handlers = [
-  authLogin,
-  authJoin,
+  auth_login,
+  auth_join,
+  auth_logout,
   user,
   category,
-  userCategory,
+  user_category,
   post_category_id,
   post_detail,
   post,

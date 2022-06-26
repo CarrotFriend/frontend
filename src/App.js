@@ -6,12 +6,16 @@ import LoginPage from './components/pages/LoginPage';
 import JoinPage from './components/pages/JoinPage';
 import CategoryPage from './components/pages/CategoryPage';
 import PrivateRoute from './util/PrivateRoute';
+import axios from 'axios';
 
 if (process.env.NODE_ENV === 'development') {
   const { worker } = require('./mock/browser');
 
   worker.start();
 }
+
+axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.withCredentials = true;
 
 function App() {
   return (
