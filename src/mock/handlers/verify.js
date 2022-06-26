@@ -8,28 +8,23 @@ export default rest.get('/verify/*', (req, res, ctx) => {
       ctx.status(200),
       ctx.delay(300),
       ctx.json({
-        state: 200,
+        state: 400,
         result: 'success',
         message: null,
-        data: {
-          code: 400,
-        },
+        data: {},
         error: [],
       })
     );
   }
   if (pathArr[2] === 'nickName' && pathArr[3] === '조조수학') {
-    console.log(pathArr[2]);
     return res(
       ctx.status(200),
       ctx.delay(300),
       ctx.json({
-        state: 200,
+        state: 400,
         result: 'success',
         message: null,
-        data: {
-          code: 400,
-        },
+        data: {},
         error: [],
       })
     );
@@ -40,12 +35,10 @@ export default rest.get('/verify/*', (req, res, ctx) => {
       ctx.status(200),
       ctx.delay(300),
       ctx.json({
-        state: 200,
+        state: 400,
         result: 'success',
         message: null,
-        data: {
-          code: 400,
-        },
+        data: {},
         error: [],
       })
     );
@@ -58,9 +51,7 @@ export default rest.get('/verify/*', (req, res, ctx) => {
       state: 200,
       result: 'success',
       message: null,
-      data: {
-        code: 200,
-      },
+      data: {},
       error: [],
     })
   );

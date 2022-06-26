@@ -25,6 +25,13 @@ const HomePage = () => {
     })
   );
 
+  // 아무 카테고리도 선택되지 않았을 때
+  if (results.length === 0) {
+    return (
+      <NoCategory>상단의 '내정보'에서 카테고리를 선택해주세요.</NoCategory>
+    );
+  }
+
   // 에러 처리
   results.forEach(({ isError }) => {
     if (isError) {
@@ -39,6 +46,7 @@ const HomePage = () => {
     data?.data?.data.forEach((post) => acc.push(post));
     return acc;
   }, []);
+
   // posts 배열 날짜순으로 내림차순
   posts.sort((a, b) => {
     if (a.regDate < b.regDate) return 1;
@@ -46,12 +54,11 @@ const HomePage = () => {
     return 0;
   });
 
-  // 이거로 데이터 로딩 구현하면 됨
+  // 데이터 로딩
   const loading = results.some((result) => result.isLoading);
   if (loading) {
     return <LoadingBox />;
   }
-  // const images = [...dummyData.map(({ image, ...rest }, idx) => image)];
   return (
     <StyledHomePage>
       <ContentBox>
@@ -62,7 +69,6 @@ const HomePage = () => {
             { id: postId + 1, text: getWhatTimeBefore(regDate) },
             { id: postId + 2, text: getTagStr(tag) },
           ];
-          // navigate('/category', { state: { data: data } });
           return (
             <ContentList
               key={title + idx}
@@ -73,24 +79,6 @@ const HomePage = () => {
             </ContentList>
           );
         })}
-        {/* 더미데이터용 코드. 나중에 밑의 더미데이터와 같이 삭제 */}
-        {/* {dummyData.map(({ image, ...rest }, idx) => {
-          const { id, title, regdate, tag } = rest;
-          const dataList = [
-            { id: id, text: title },
-            { id: id + 1, text: regdate },
-            { id: id + 2, text: tag },
-          ];
-          return (
-            <ContentList
-              key={images[idx] + idx}
-              onClick={() => navigate('/detail')}
-            >
-              <Image src={images[idx]} alt="content" size="large" />
-              <TextList list={dataList} flex="column" />
-            </ContentList>
-          );
-        })} */}
         <FixedButton>
           <Button
             size="medium"
@@ -117,6 +105,12 @@ const HomePage = () => {
   );
 };
 
+const NoCategory = styled.div`
+  margin-top: 40vh;
+  font-size: 3vw;
+  text-align: center;
+`;
+
 const FixedButton = styled.div`
   position: fixed;
   top: 70%;
@@ -142,108 +136,5 @@ const StyledHomePage = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-// 더미데이터. 나중에 삭제
-// const commonTextAttribue = {
-//   // size: 'small',
-// };
-// const dummyData = [
-//   {
-//     ...commonTextAttribue,
-//     id: '1',
-//     title: '궁동 밥 드실분',
-//     image: '',
-//     regdate: '2022-01-01',
-//     tag: '#궁동 #맛집',
-//   },
-//   {
-//     ...commonTextAttribue,
-//     id: '2',
-//     title: '자전거 엑스포!',
-//     image: '',
-//     regdate: '2022-01-24',
-//     tag: '#엑스포 #자전거',
-//   },
-//   {
-//     ...commonTextAttribue,
-//     id: '3',
-//     title: '모각코 모집',
-//     image: '',
-//     regdate: '2022-02-05',
-//     tag: '#모각코',
-//   },
-//   {
-//     ...commonTextAttribue,
-//     id: '4',
-//     title: '롤 동료 모집',
-//     image: '',
-//     regdate: '2022-03-07',
-//     tag: '#롤 #게임 #승급전',
-//   },
-//   {
-//     ...commonTextAttribue,
-//     id: '5',
-//     title: '궁동 밥 드실분',
-//     image: '',
-//     regdate: '2022-01-01',
-//     tag: '#궁동 #맛집',
-//   },
-//   {
-//     ...commonTextAttribue,
-//     id: '6',
-//     title: '자전거 엑스포!',
-//     image: '',
-//     regdate: '2022-01-24',
-//     tag: '#엑스포 #자전거',
-//   },
-//   {
-//     ...commonTextAttribue,
-//     id: '7',
-//     title: '모각코 모집',
-//     image: '',
-//     regdate: '2022-02-05',
-//     tag: '#모각코',
-//   },
-//   {
-//     ...commonTextAttribue,
-//     id: '8',
-//     title: '롤 동료 모집',
-//     image: '',
-//     regdate: '2022-03-07',
-//     tag: '#롤 #게임 #승급전',
-//   },
-//   {
-//     ...commonTextAttribue,
-//     id: '9',
-//     title: '궁동 밥 드실분',
-//     image: '',
-//     regdate: '2022-01-01',
-//     tag: '#궁동 #맛집',
-//   },
-//   {
-//     ...commonTextAttribue,
-//     id: '10',
-//     title: '자전거 엑스포!',
-//     image: '',
-//     regdate: '2022-01-24',
-//     tag: '#엑스포 #자전거',
-//   },
-//   {
-//     ...commonTextAttribue,
-//     id: '11',
-//     title: '모각코 모집',
-//     image: '',
-//     regdate: '2022-02-05',
-//     tag: '#모각코',
-//   },
-//   {
-//     ...commonTextAttribue,
-//     id: '12',
-//     title: '롤 동료 모집',
-//     image: '',
-//     regdate: '2022-03-07',
-//     tag: '#롤 #게임 #승급전',
-//   },
-// ];
 
 export default HomePage;

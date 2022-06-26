@@ -10,7 +10,7 @@ const logout = async (navigate) => {
         Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
       },
     });
-    if (data.state != 200) throw new Error('failed to logout');
+    if (data.state !== 200) throw new Error('failed to logout');
 
     window.alert('로그아웃 되었습니다!');
     localStorage.removeItem('accessToken');

@@ -7,9 +7,7 @@ export const verify = async (ele, identifier, val) => {
 
   try {
     const {
-      data: {
-        data: { code },
-      },
+      data: { state },
     } = await axios({
       method: 'get',
       url: '/verify/' + identifier + '/' + val,
@@ -18,14 +16,13 @@ export const verify = async (ele, identifier, val) => {
         Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
       },
     });
-    console.log(code);
     const label =
       identifier === 'userId'
         ? '아이디'
-        : identifier === 'nickname'
+        : identifier === 'nickName'
         ? '닉네임'
         : '이메일';
-    if (code === 400) {
+    if (state !== 200) {
       window.alert('이미 존재하는 ' + label + '입니다. 다시 입력해 주세요.');
       ele.value = '';
       ele.focus();

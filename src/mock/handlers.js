@@ -1,6 +1,7 @@
 import auth_login from './handlers/auth_login';
 import auth_join from './handlers/auth_join';
 import auth_logout from './handlers/auth_logout';
+import auth_reissue from './handlers/auth_reissue';
 import user from './handlers/user';
 import category from './handlers/category';
 import user_category from './handlers/user_category';
@@ -16,6 +17,7 @@ const handlers = [
   auth_login,
   auth_join,
   auth_logout,
+  auth_reissue,
   user,
   category,
   user_category,

@@ -13,7 +13,7 @@ const withdrawal = async (navigate) => {
         Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
       },
     });
-    if (data.state != 200) throw new Error('failed to withdrawal');
+    if (data.state !== 200) throw new Error('failed to withdrawal');
 
     window.alert('탈퇴가 완료되었습니다.');
     localStorage.removeItem('accessToken');
