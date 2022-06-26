@@ -5,6 +5,7 @@ import ButtonList from '../../organisms/ButtonList';
 import data from './data';
 import logout from './logout';
 import reselectCategory from './reselectCategory';
+import withdrawal from './withdrawal';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const ProfilePage = () => {
     },
     {
       ...data[1][1],
-      clickBtn: () => console.log('hoho'),
+      clickBtn: () => withdrawal(navigate),
     },
   ];
 

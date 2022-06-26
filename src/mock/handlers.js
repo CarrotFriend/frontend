@@ -10,6 +10,7 @@ import post from './handlers/post';
 import verify from './handlers/verify';
 import post_mypost from './handlers/post_mypost';
 import user_put from './handlers/user_put';
+import user_delete from './handlers/user_delete';
 
 const handlers = [
   auth_login,
@@ -24,6 +25,7 @@ const handlers = [
   verify,
   post_mypost,
   user_put,
+  user_delete,
 ];
 
 export default handlers;
