@@ -52,7 +52,7 @@ const WritePage = () => {
       navigate('/');
       return;
     }
-    navigate('/detail', { state: { id: postId } });
+    navigate('/detail', { state: { postId } });
   };
 
   useEffect(() => {

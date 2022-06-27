@@ -36,8 +36,9 @@ const HomePage = () => {
   results.forEach(({ isError }) => {
     if (isError) {
       window.alert('서버 연결이 불안정합니다. 잠시 후에 다시 시도해주세요.');
-      navigate('/login');
-      return;
+      localStorage.removeItem('user');
+      // navigate('/login');
+      // window.location.href = '/login';
     }
   });
 

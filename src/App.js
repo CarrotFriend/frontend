@@ -48,7 +48,7 @@ function App() {
               }
             />
             <Route
-              path="/login/*"
+              path="/login"
               element={
                 <LoggedinPrivateRoute>
                   <LoginPage />
