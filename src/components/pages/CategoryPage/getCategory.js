@@ -5,10 +5,6 @@ const getCategory = async () => {
     const result = await axios({
       method: 'get',
       url: '/category',
-      header: {
-        accept: '*/*',
-        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
-      },
     });
 
     if (result.data.state === 400) return 'error';

@@ -40,7 +40,7 @@ const CategoryPage = () => {
     inputValues.forEach((input) => {
       if (list.includes(input.dataset.code)) input.checked = true;
     });
-  }, []);
+  }, [categoryList]);
 
   return (
     <StyledCategoryPage>

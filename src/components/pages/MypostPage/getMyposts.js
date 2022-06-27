@@ -6,10 +6,6 @@ const getMyPosts = async (navigate) => {
     const fetchedData = await axios({
       method: 'get',
       url: `/post/mypost/${id}`,
-      header: {
-        accept: '*/*',
-        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
-      },
     });
 
     if (fetchedData.data.state !== 200) {

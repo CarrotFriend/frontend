@@ -5,10 +5,6 @@ const logout = async (navigate) => {
     const { data } = await axios({
       method: 'post',
       url: '/auth/logout',
-      header: {
-        accept: '*/*',
-        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
-      },
     });
     if (data.state !== 200) throw new Error('failed to logout');
 

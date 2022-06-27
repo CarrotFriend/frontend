@@ -10,10 +10,6 @@ export const registPost = async ({ title, category, image, content, tags }) => {
     const { data } = await axios({
       method: 'post',
       url: '/post',
-      header: {
-        accept: '*/*',
-        'Content-Type': 'application/json',
-      },
       data: {
         userId: localStorage.getItem('user').id,
         title,

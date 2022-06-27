@@ -13,10 +13,6 @@ export const modifyMyInfo = async ({
     const { data } = await axios({
       method: 'put',
       url: '/user',
-      header: {
-        accept: '*/*',
-        'Content-Type': 'application/json',
-      },
       data: {
         userId,
         pw,

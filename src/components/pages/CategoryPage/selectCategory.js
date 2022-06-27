@@ -20,11 +20,6 @@ const selectCategory = async (_inputValues) => {
     } = await axios({
       method: 'post',
       url: '/user/category',
-      withCredentials: true,
-      header: {
-        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
-        'Content-Type': 'application/json',
-      },
       data: {
         userCateDto: {
           id: user.id,

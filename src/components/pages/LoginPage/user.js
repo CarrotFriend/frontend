@@ -1,14 +1,11 @@
 import axios from 'axios';
 
-const user = async () => {
+const user = async (id) => {
+  console.log(axios.defaults.headers.Authorization);
   try {
     const userData = await axios({
       method: 'get',
-      url: '/user',
-      header: {
-        accept: '*/*',
-        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
-      },
+      url: '/user/' + id,
     });
     localStorage.setItem('user', JSON.stringify(userData.data.data));
   } catch (err) {

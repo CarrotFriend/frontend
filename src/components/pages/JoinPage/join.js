@@ -5,10 +5,6 @@ export const join = async ({ userId, pw, userName, nickName, email, date }) => {
     const { data } = await axios({
       method: 'post',
       url: '/auth/join',
-      header: {
-        accept: '*/*',
-        'Content-Type': 'application/json',
-      },
       data: {
         userId,
         pw,

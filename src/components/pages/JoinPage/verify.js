@@ -1,10 +1,15 @@
 import axios from 'axios';
 
-export const verify = async (ele, identifier, val) => {
+export const verify = async (ele, _identifier, val) => {
   const user = JSON.parse(localStorage.getItem('user'));
   // input에 적혀진 value가 현재 저장되어 있는 값이면 중복체크 하지 않음
-  if (user?.[identifier] === val) return;
-
+  if (user?.[_identifier] === val) return;
+  const identifier =
+    _identifier === 'userId'
+      ? 'userid'
+      : _identifier === 'nickName'
+      ? 'nickname'
+      : _identifier;
   try {
     const {
       data: { state },
@@ -13,7 +18,7 @@ export const verify = async (ele, identifier, val) => {
       url: '/verify/' + identifier + '/' + val,
     });
     const label =
-      identifier === 'userId'
+      identifier === 'userid'
         ? '아이디'
         : identifier === 'nickName'
         ? '닉네임'

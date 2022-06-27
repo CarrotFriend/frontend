@@ -43,7 +43,7 @@ const LoginPage = () => {
         }
         const loggedIn = await login(id, pw, setAlert);
         if (loggedIn) {
-          await user();
+          await user(id);
           checkCategoryList(navigate);
         }
       },

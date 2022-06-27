@@ -5,10 +5,6 @@ const getPostDetail = async (postId) => {
     const fetchedData = await axios({
       method: 'get',
       url: `/post/detail/${postId}`,
-      header: {
-        accept: '*/*',
-        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
-      },
     });
     if (fetchedData.data.state !== 200)
       throw new Error('Error in Fetching data!');

@@ -8,10 +8,6 @@ const withdrawal = async (navigate) => {
     const { data } = await axios({
       method: 'delete',
       url: '/user',
-      header: {
-        accept: '*/*',
-        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
-      },
     });
     if (data.state !== 200) throw new Error('failed to withdrawal');
 
