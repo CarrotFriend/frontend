@@ -10,13 +10,13 @@ import LoggedinPrivateRoute from './util/LoggedinPrivateRoute';
 import axios from 'axios';
 import reissue from './util/reissue';
 
-if (process.env.NODE_ENV === 'development') {
-  const { worker } = require('./mock/browser');
+// if (process.env.NODE_ENV === 'development') {
+//   const { worker } = require('./mock/browser');
 
-  worker.start();
-}
+//   worker.start();
+// }
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'https://carrot-back.herokuapp.com';
 axios.defaults.withCredentials = true;
 axios.defaults.headers['Content-Type'] = 'application/json; charset=UTF-8';
 

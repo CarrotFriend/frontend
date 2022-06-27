@@ -11,10 +11,6 @@ export const verify = async (ele, identifier, val) => {
     } = await axios({
       method: 'get',
       url: '/verify/' + identifier + '/' + val,
-      header: {
-        accept: '*/*',
-        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
-      },
     });
     const label =
       identifier === 'userId'
