@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const user = async (id) => {
-  console.log(axios.defaults.headers.Authorization);
   try {
     const userData = await axios({
       method: 'get',

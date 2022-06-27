@@ -14,6 +14,8 @@ const selectCategory = async (_inputValues) => {
     }
     return result;
   }, []);
+  console.log(user.id);
+  console.log(categoryList);
   try {
     const {
       data: { state },
@@ -21,10 +23,8 @@ const selectCategory = async (_inputValues) => {
       method: 'post',
       url: '/user/category',
       data: {
-        userCateDto: {
-          id: user.id,
-          categoryList,
-        },
+        id: user.id,
+        categoryList,
       },
     });
 

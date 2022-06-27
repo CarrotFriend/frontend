@@ -1,25 +1,38 @@
 import axios from 'axios';
 
-export const registPost = async ({ title, category, image, content, tags }) => {
+export const registPost = async ({
+  title,
+  categoryObj,
+  image,
+  content,
+  tags,
+}) => {
   const tagList = tags
     .filter((tag) => tag !== '')
     .map((tag) => {
       return { text: tag };
     });
+
+  const imageList =
+    image === ''
+      ? []
+      : [
+          {
+            imageId: 0,
+            src: image,
+          },
+        ];
+
   try {
     const { data } = await axios({
       method: 'post',
       url: '/post',
       data: {
-        userId: localStorage.getItem('user').id,
+        userId: JSON.parse(localStorage.getItem('user')).id,
         title,
-        imageList: [
-          {
-            src: image,
-          },
-        ],
+        imageList,
         content,
-        category,
+        category: categoryObj,
         tagList,
       },
     });

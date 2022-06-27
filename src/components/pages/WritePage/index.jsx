@@ -35,7 +35,17 @@ const WritePage = () => {
       setAlert('내용을 입력해 주세요.');
       return;
     }
-    const postId = await registPost({ title, category, image, content, tags });
+    const categoryObj = {
+      code: data.option.indexOf(category),
+      name: category,
+    };
+    const postId = await registPost({
+      title,
+      categoryObj,
+      image,
+      content,
+      tags,
+    });
     // 에러 처리
     if (postId === -1) {
       window.alert('서버 연결이 불안정합니다. 잠시 후에 다시 시도해주세요.');
