@@ -4,7 +4,7 @@ export const join = async ({ userId, pw, userName, nickName, email, date }) => {
   try {
     const { data } = await axios({
       method: 'post',
-      url: '/auth/join',
+      url: '/user/join',
       data: {
         userId,
         pw,
