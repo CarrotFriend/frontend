@@ -40,6 +40,8 @@ const Textarea = ({ value, setValue, ...rest }) => {
   const handle = (e) => {
     setValue && setValue(e.target.value);
   };
+  if (!setValue)
+    return <StyledTextarea value={value} {...rest} onChange={handle} />;
   return <StyledTextarea {...rest} onChange={handle} />;
 };
 

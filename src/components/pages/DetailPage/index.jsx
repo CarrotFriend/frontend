@@ -31,17 +31,21 @@ const DetailPage = () => {
     fetchPostDetail();
   }, []);
 
+  if (data === '') return <LoadingBox />;
+
   const dataList = [
-    { id: data.id, size: 'medium', text: data.title },
+    { id: data.user.id, size: 'medium', text: data.title },
     {
-      id: data.id + 1,
+      id: data.user.id + 1,
       text: `${data.user?.nickName} | 매너 온도 : ${data.user?.degree}˚C`,
     },
     // { id: data.id + 2, text: '매너 온도 : ' + data.degree + '˚C' },
-    { id: data.id + 3, text: data.tag && getTagStr(data.tag) },
-    { id: data.id + 4, text: data.regDate && getWhatTimeBefore(data.regDate) },
+    { id: data.user.id + 3, text: data.tag && getTagStr(data.tag) },
+    {
+      id: data.user.id + 4,
+      text: data.regDate && getWhatTimeBefore(data.regDate),
+    },
   ];
-  if (data === '') return <LoadingBox />;
   return (
     <StyledDetailPage>
       <FormBox>

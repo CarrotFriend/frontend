@@ -60,6 +60,7 @@ const HomePage = () => {
   if (loading) {
     return <LoadingBox />;
   }
+
   return (
     <StyledHomePage>
       <ContentBox>
