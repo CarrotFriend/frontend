@@ -31,7 +31,8 @@ const MypostPage = () => {
   if (isLoading) {
     return <LoadingBox />;
   }
-  const posts = data.data.data.post;
+
+  const posts = data.data.data;
   posts.sort((a, b) => {
     if (a.regDate < b.regDate) return 1;
     if (a.regDate > b.regDate) return -1;
