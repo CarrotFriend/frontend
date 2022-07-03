@@ -1,4 +1,5 @@
 import axios from 'axios';
+import reissue from '../../../util/reissue';
 
 const getMyPosts = async (navigate) => {
   // 새로고침으로 토큰이 없으면 reissue
