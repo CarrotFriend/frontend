@@ -9,11 +9,18 @@ import getBoardData from './getBoardData';
 import LoadingBox from '../../organisms/LoadingBox';
 import getTagStr from '../../../util/getTagStr';
 import getWhatTimeBefore from '../../../util/getWhatTimeBefore';
+import axios from 'axios';
+import reissue from '../../../util/reissue';
 
 const HomePage = () => {
   const navigate = useNavigate();
   const { categoryList } = JSON.parse(localStorage.getItem('user'));
-  console.log(categoryList);
+  console.log(axios.defaults.headers['Authorization']);
+  // 새로고침으로 토큰이 없으면 reissue
+  if (!axios.defaults.headers['Authorization']) requestAccess();
+
+  console.log('after');
+
   const results = useQueries(
     categoryList.map(({ code }) => {
       return {
@@ -107,6 +114,11 @@ const HomePage = () => {
       </ContentBox>
     </StyledHomePage>
   );
+};
+
+const requestAccess = async () => {
+  await reissue();
+  console.log('before');
 };
 
 const NoCategory = styled.div`
