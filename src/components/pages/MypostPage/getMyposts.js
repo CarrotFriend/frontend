@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 const getMyPosts = async (navigate) => {
+  // 새로고침으로 토큰이 없으면 reissue
+  if (!axios.defaults.headers['Authorization']) await reissue();
   const { id } = JSON.parse(localStorage.getItem('user'));
+
   try {
     const fetchedData = await axios({
       method: 'get',

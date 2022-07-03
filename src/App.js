@@ -23,7 +23,7 @@ axios.defaults.headers['Content-Type'] = 'application/json; charset=UTF-8';
 function App() {
   useEffect(() => {
     // 새로 고침 시 reissue로 accessToken 가져오기
-    // reissue();
+    if (!axios.defaults.headers['Authorization']) reissue();
   }, []);
   return (
     <div className="App">
