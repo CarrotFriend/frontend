@@ -40,7 +40,7 @@ const DetailPage = () => {
       text: `${data.user.nickName} | 매너 온도 : ${data.user.temperature}˚C`,
     },
     // { id: data.id + 2, text: '매너 온도 : ' + data.degree + '˚C' },
-    { id: data.user.id + 3, text: data.tag && getTagStr(data.tag) },
+    { id: data.user.id + 3, text: data.tagList && getTagStr(data.tagList) },
     {
       id: data.user.id + 4,
       text: data.regDate && getWhatTimeBefore(data.regDate),

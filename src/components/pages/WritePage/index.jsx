@@ -47,8 +47,6 @@ const WritePage = () => {
       tags,
     });
 
-    console.log('postId ', postId);
-
     // 에러 처리
     if (postId === -1) {
       window.alert('서버 연결이 불안정합니다. 잠시 후에 다시 시도해주세요.');

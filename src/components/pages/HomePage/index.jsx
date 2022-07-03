@@ -65,11 +65,11 @@ const HomePage = () => {
     <StyledHomePage>
       <ContentBox>
         {posts.map(({ imageList, ...rest }, idx) => {
-          const { postId, title, regDate, tag } = rest;
+          const { postId, title, regDate, tagList } = rest;
           const dataList = [
             { id: postId, text: title },
             { id: postId + 1, text: getWhatTimeBefore(regDate) },
-            { id: postId + 2, text: getTagStr(tag) },
+            { id: postId + 2, text: getTagStr(tagList) },
           ];
           return (
             <ContentList
