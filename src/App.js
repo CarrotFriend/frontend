@@ -17,7 +17,7 @@ import reissue from './util/reissue';
 // }
 
 axios.defaults.baseURL = 'https://carrot-back.herokuapp.com';
-axios.defaults.headers.withCredentials = true;
+axios.defaults.withCredentials = true;
 axios.defaults.headers['Content-Type'] = 'application/json; charset=UTF-8';
 
 function App() {

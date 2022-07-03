@@ -11,12 +11,8 @@ const reissue = async () => {
     const {
       data: { state, data },
     } = await axios({
-      method: 'post',
+      method: 'get',
       url: '/auth/reissue',
-      header: {
-        accept: '*/*',
-        'Content-Type': 'application/json',
-      },
     });
 
     // refreshToken invalidate
