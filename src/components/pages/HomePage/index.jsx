@@ -13,6 +13,7 @@ import getWhatTimeBefore from '../../../util/getWhatTimeBefore';
 const HomePage = () => {
   const navigate = useNavigate();
   const { categoryList } = JSON.parse(localStorage.getItem('user'));
+  console.log(categoryList);
   const results = useQueries(
     categoryList.map(({ code }) => {
       return {
@@ -24,6 +25,7 @@ const HomePage = () => {
       };
     })
   );
+  console.log(results);
 
   // 아무 카테고리도 선택되지 않았을 때
   if (results.length === 0) {
