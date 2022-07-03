@@ -18,6 +18,8 @@ const reissue = async () => {
     // refreshToken invalidate
     if (state !== 200) throw new Error('refreshToken invalidate.');
 
+    console.log(data);
+
     axios.defaults.headers['Authorization'] =
       data.grantType + ' ' + data.accessToken;
 

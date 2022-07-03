@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const getBoardData = async (code) => {
-  console.log(code);
+  console.log(axios.defaults.headers);
   try {
     const fetchedData = await axios({
       method: 'get',
